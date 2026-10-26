@@ -499,13 +499,13 @@ html.noscroll{overflow:hidden}
   <div class="wrap">
     <div class="brand"><b>Afrika Championships</b></div>
     <nav class="tabs" role="tablist" aria-label="Bereiche">
-      <button class="tab" role="tab" id="t-spieler" aria-controls="spieler" aria-selected="false">Spieler</button>
-      <button class="tab" role="tab" id="t-leaderboard" aria-controls="leaderboard" aria-selected="true">Leaderboard</button>
-      <button class="tab" role="tab" id="t-startzeiten" aria-controls="startzeiten" aria-selected="false">Startzeiten</button>
       <button class="tab" role="tab" id="t-platz" aria-controls="platz" aria-selected="false">Platz</button>
+      <button class="tab" role="tab" id="t-spieler" aria-controls="spieler" aria-selected="false">Spieler</button>
+      <button class="tab" role="tab" id="t-startzeiten" aria-controls="startzeiten" aria-selected="false">Startzeiten</button>
+      <button class="tab" role="tab" id="t-leaderboard" aria-controls="leaderboard" aria-selected="true">Leaderboard</button>
       <button class="tab" role="tab" id="t-statistik" aria-controls="statistik" aria-selected="false">Statistik</button>
       <button class="tab" role="tab" id="t-galerie" aria-controls="galerie" aria-selected="false">Galerie</button>
-      <button class="tab" role="tab" id="t-hits" aria-controls="hits" aria-selected="false">Hits</button>
+      <button class="tab" role="tab" id="t-hits" aria-controls="hits" aria-selected="false">Birdie 27 Hits</button>
     </nav>
     <button type="button" class="pw-btn" id="pw-btn" aria-label="Pinnwand öffnen" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4v-4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><b class="bdg" id="pw-badge" hidden></b></button>
   </div>
@@ -626,15 +626,15 @@ html.noscroll{overflow:hidden}
       <div class="tiles" id="st-tiles"></div>
       <div class="lb-scroll">
         <table class="lb">
-          <thead><tr><th class="l">Spieler</th><th>Rd.</th><th>Ø Brutto</th><th>Beste</th><th>Ø Putts</th><th>Birdies+</th><th class="hide-sm">Pars</th><th class="hide-sm">Bogeys</th><th class="hide-sm">Doppel+</th><th>3-Putts</th></tr></thead>
+          <thead><tr><th class="l">Spieler</th><th>Rd.</th><th>Ø Brutto</th><th>Beste</th><th>Ø Putts</th><th>Birdies+</th><th class="hide-sm">Pars</th><th class="hide-sm">Bogeys</th><th class="hide-sm">Doppel+</th><th>1-Putts</th><th>3-Putts</th></tr></thead>
           <tbody id="st-body"></tbody>
         </table>
       </div>
     </div>
   </section>
 </main>
-<nav class="tbar" aria-label="Bereiche"><button type="button" data-t="spieler"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14.5c2.4 0 4 1.5 4.5 4"/></svg><span>Spieler</span></button><button type="button" data-t="leaderboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-7M22 20H2"/></svg><span>Leaderboard</span></button><button type="button" data-t="startzeiten"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Startzeiten</span></button><button type="button" data-t="platz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V3l11 4.5L6 12"/><path d="M3 21h12"/></svg><span>Platz</span></button><button type="button" data-t="mehr"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="7.5" cy="12" r=".6" fill="currentColor"/><circle cx="12" cy="12" r=".6" fill="currentColor"/><circle cx="16.5" cy="12" r=".6" fill="currentColor"/></svg><span>Mehr</span></button></nav>
-<div class="more-ov" id="more-ov" aria-hidden="true"><div class="more" role="dialog" aria-modal="true" aria-label="Weitere Bereiche"><h3>Mehr</h3><button type="button" data-t="statistik"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg><span>Statistik</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="galerie"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Galerie</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="hits"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg><span>Hits</span><span class="chev" aria-hidden="true">›</span></button><button type="button" class="close" data-close>Schließen</button></div></div>
+<nav class="tbar" aria-label="Bereiche"><button type="button" data-t="platz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V3l11 4.5L6 12"/><path d="M3 21h12"/></svg><span>Platz</span></button><button type="button" data-t="spieler"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14.5c2.4 0 4 1.5 4.5 4"/></svg><span>Spieler</span></button><button type="button" data-t="startzeiten"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Startzeiten</span></button><button type="button" data-t="leaderboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-7M22 20H2"/></svg><span>Leaderboard</span></button><button type="button" data-t="mehr"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="7.5" cy="12" r=".6" fill="currentColor"/><circle cx="12" cy="12" r=".6" fill="currentColor"/><circle cx="16.5" cy="12" r=".6" fill="currentColor"/></svg><span>Mehr</span></button></nav>
+<div class="more-ov" id="more-ov" aria-hidden="true"><div class="more" role="dialog" aria-modal="true" aria-label="Weitere Bereiche"><h3>Mehr</h3><button type="button" data-t="statistik"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg><span>Statistik</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="galerie"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Galerie</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="hits"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg><span>Birdie 27 Hits</span><span class="chev" aria-hidden="true">›</span></button><button type="button" class="close" data-close>Schließen</button></div></div>
 <div class="pw-ov" id="pw-ov" aria-hidden="true"><div class="pw-sheet" role="dialog" aria-modal="true" aria-labelledby="pw-title"><div class="pw-sh-h"><h2 id="pw-title">Pinnwand</h2><button type="button" id="pw-done">Fertig</button></div><div class="pw-sh-b"><div class="pw" id="pw"></div></div></div></div>
 <div class="offl" id="offl" role="status" aria-live="polite"><span>Offline · letzter gespeicherter Stand</span></div>
 
@@ -717,7 +717,7 @@ function roundOf(pid, r) {
   const putts = played.reduce((a,h) => a + (h.p == null || h.p === '' ? 0 : Number(h.p)), 0);
   const cnt = k => played.filter(h => { const d = Number(h.s) - Number(h.par); return k(d); }).length;
   return { thru: played.length, strokes, par, toPar: strokes - par, net, netToPar: net - par, hasNet: vg != null,
-    putts, three: played.filter(h => Number(h.p) >= 3).length,
+    putts, three: played.filter(h => Number(h.p) >= 3).length, one: played.filter(h => h.p != null && h.p !== '' && Number(h.p) === 1).length,
     birdies: cnt(d => d <= -1), pars: cnt(d => d === 0), bogeys: cnt(d => d === 1), doubles: cnt(d => d >= 2), sc };
 }
 function currentRound() { let c = 0; state.rounds.forEach(r => { if (state.scores.some(s => s.runde === r.runde && s.holes.some(h => h.s != null && h.s !== ''))) c = r.runde; }); return c; }
@@ -911,7 +911,7 @@ function renderHoles() {
   const isSwipe = () => { const o = $('#overview'); return o.scrollWidth > o.clientWidth + 4; };
   function render() {
     const tt = $('#tees'); tt.innerHTML = '';
-    [['G','Gelb','#f2d03b'],['W','Weiß','#ffffff'],['B','Blau','#3a7bd5'],['R','Rot','#d93a3a']].forEach(([k,l,c]) => { const b = bel('button'); b.type = 'button'; b.setAttribute('aria-pressed', k === tee); const d = bel('span','dot'); d.style.background = c; b.append(d, document.createTextNode(l)); b.onclick = () => { tee = k; render(); }; tt.append(b); });
+    [['W','Weiß','#ffffff'],['G','Gelb','#f2d03b'],['B','Blau','#3a7bd5'],['R','Rot','#d93a3a']].forEach(([k,l,c]) => { const b = bel('button'); b.type = 'button'; b.setAttribute('aria-pressed', k === tee); const d = bel('span','dot'); d.style.background = c; b.append(d, document.createTextNode(l)); b.onclick = () => { tee = k; render(); }; tt.append(b); });
     const o = $('#overview'), keepX = o.scrollLeft; o.innerHTML = '';
     Object.entries(COURSES).forEach(([id,c]) => {
       const d = bel('div','cc'); d.dataset.id = id; d.setAttribute('aria-current', id === cur); d.setAttribute('role','button'); d.tabIndex = 0;
@@ -945,11 +945,11 @@ function renderHoles() {
     hpFor(cur).forEach(([lab,hp]) => { const tr = bel('tr'); tr.append(bel('th','',lab)); hp.forEach(v => tr.append(bel('td','',String(v)))); tb.append(tr); });
     sc.append(tb); p.append(sc);
     const cb = $('#combos'); cb.innerHTML = '';
-    const h = bel('tr'); ['Kombination','Par','Gelb','Weiß','Blau','Rot'].forEach(x => h.append(bel('th','',x))); cb.append(h);
+    const h = bel('tr'); ['Kombination','Par','Weiß','Gelb','Blau','Rot'].forEach(x => h.append(bel('th','',x))); cb.append(h);
     Object.entries(COMBOS).forEach(([k,cmb]) => { const A = COURSES[cmb.a], B = COURSES[cmb.b]; const tr = bel('tr'); const td = bel('td'); td.append(bel('b','',cmb.name));
       ROUND_COMBO.forEach((rk,i) => { if (rk === k) td.append(bel('span','rtag','R' + (i+1))); }); tr.append(td);
       tr.append(bel('td','',String(sum(A.par) + sum(B.par))));
-      ['G','W','B','R'].forEach(tk => { const x = bel('td','',f(sum(A[tk]) + sum(B[tk]))); if (tk === tee) x.style.fontWeight = '700'; tr.append(x); }); cb.append(tr); });
+      ['W','G','B','R'].forEach(tk => { const x = bel('td','',f(sum(A[tk]) + sum(B[tk]))); if (tk === tee) x.style.fontWeight = '700'; tr.append(x); }); cb.append(tr); });
   }
   window.acRenderCourses = render;
   render();
@@ -1023,9 +1023,9 @@ function renderStats() {
   const rows = PLAYERS.map(p => { const rs = state.rounds.map(r => roundOf(p.id, r.runde)).filter(x => x && x.thru === 18); return {p, rs}; });
   const all = rows.flatMap(r => r.rs.map(x => ({p:r.p, x})));
   const tiles = $('#st-tiles'); tiles.innerHTML = '';
-  $('#st-sub').textContent = all.length ? all.length + ' Scorekarten ausgewertet' : 'Füllt sich ab der ersten Runde am ' + tag(DAYS[0]);
+  $('#st-sub').textContent = all.length ? all.length + (all.length === 1 ? ' Scorekarte' : ' Scorekarten') + ' ausgewertet' : 'Füllt sich ab der ersten Runde am ' + tag(DAYS[0]);
   const tile = (k, v, w) => tiles.append(el('div', {class:'tile'}, [el('span', {text:k}), el('b', {class:'num', text:v}), el('em', {text:w})]));
-  if (!all.length) { tile('Beste Runde brutto','–','offen'); tile('Beste Runde netto','–','offen'); tile('Meiste Birdies','–','offen'); tile('Meiste Pars','–','offen'); tile('Wenigste Putts Ø','–','offen'); }
+  if (!all.length) { tile('Beste Runde brutto','–','offen'); tile('Beste Runde netto','–','offen'); tile('Meiste Birdies','–','offen'); tile('Meiste Pars','–','offen'); tile('Meiste 1-Putts','–','offen'); tile('Wenigste Putts Ø','–','offen'); }
   else {
     const bb = all.reduce((a,b) => b.x.strokes < a.x.strokes ? b : a);
     const nn = all.filter(a => a.x.hasNet); const bn = nn.length ? nn.reduce((a,b) => b.x.net < a.x.net ? b : a) : null;
@@ -1036,19 +1036,21 @@ function renderStats() {
     tile('Beste Runde netto', bn ? String(bn.x.net) : '–', bn ? name(bn.p) : 'Vorgaben fehlen');
     tile('Meiste Birdies', String(bir.n), name(bir.p));
     tile('Meiste Pars', String(pa.n), name(pa.p));
+    const op = rows.map(r => ({p:r.p, n:r.rs.reduce((a,x)=>a+x.one,0)})).sort((a,b)=>b.n-a.n)[0];
+    tile('Meiste 1-Putts', String(op.n), name(op.p));
     tile('Wenigste Putts Ø', de1(pu.v), name(pu.p));
   }
   const b = $('#st-body'); b.innerHTML = '';
   rows.sort((a,b) => (b.rs.length ? 1 : 0) - (a.rs.length ? 1 : 0) || (a.rs.length && b.rs.length ? a.rs.reduce((s,x)=>s+x.strokes,0)/a.rs.length - b.rs.reduce((s,x)=>s+x.strokes,0)/b.rs.length : 0) || a.p.ln.localeCompare(b.p.ln,'de')).forEach(({p, rs}) => {
     const n = rs.length, s = k => rs.reduce((a,x)=>a+x[k],0);
-    const v = n ? [String(n), de1(s('strokes')/n), String(Math.min(...rs.map(x=>x.strokes))), de1(s('putts')/n), String(s('birdies')), String(s('pars')), String(s('bogeys')), String(s('doubles')), String(s('three'))] : ['0','–','–','–','–','–','–','–','–'];
+    const v = n ? [String(n), de1(s('strokes')/n), String(Math.min(...rs.map(x=>x.strokes))), de1(s('putts')/n), String(s('birdies')), String(s('pars')), String(s('bogeys')), String(s('doubles')), String(s('one')), String(s('three'))] : ['0','–','–','–','–','–','–','–','–','–'];
     const hide = [6,7,8];
     b.append(el('tr', {}, [el('td', {class:'l'}, el('div', {class:'who'}, [avatar(p), el('span', {class:'nm', text: name(p)})])), ...v.map((t,i) => el('td', {class: hide.includes(i+1) ? 'hide-sm' : '', text: t}))]));
   });
 }
 
 /* ---------- Reiter ---------- */
-const TABS = ['spieler','leaderboard','startzeiten','platz','statistik','galerie','hits'];
+const TABS = ['platz','spieler','startzeiten','leaderboard','statistik','galerie','hits'];
 
 /* ---------- Pinnwand ---------- */
 const SB_URL = 'https://kjxffqmyxdgczlyktbjj.supabase.co';
