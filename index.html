@@ -499,10 +499,10 @@ html.noscroll{overflow:hidden}
   <div class="wrap">
     <div class="brand"><b>Afrika Championships</b></div>
     <nav class="tabs" role="tablist" aria-label="Bereiche">
-      <button class="tab" role="tab" id="t-platz" aria-controls="platz" aria-selected="false">Platz</button>
+      <button class="tab" role="tab" id="t-platz" aria-controls="platz" aria-selected="true">Platz</button>
       <button class="tab" role="tab" id="t-spieler" aria-controls="spieler" aria-selected="false">Spieler</button>
       <button class="tab" role="tab" id="t-startzeiten" aria-controls="startzeiten" aria-selected="false">Startzeiten</button>
-      <button class="tab" role="tab" id="t-leaderboard" aria-controls="leaderboard" aria-selected="true">Leaderboard</button>
+      <button class="tab" role="tab" id="t-leaderboard" aria-controls="leaderboard" aria-selected="false">Leaderboard</button>
       <button class="tab" role="tab" id="t-statistik" aria-controls="statistik" aria-selected="false">Statistik</button>
       <button class="tab" role="tab" id="t-galerie" aria-controls="galerie" aria-selected="false">Galerie</button>
       <button class="tab" role="tab" id="t-hits" aria-controls="hits" aria-selected="false">Birdie 27 Hits</button>
@@ -522,7 +522,7 @@ html.noscroll{overflow:hidden}
 
 <main class="wrap">
   <!-- LEADERBOARD -->
-  <section role="tabpanel" id="leaderboard" aria-labelledby="t-leaderboard">
+  <section role="tabpanel" id="leaderboard" aria-labelledby="t-leaderboard" hidden>
     <div class="panel" id="countdown-panel" hidden>
       <div class="panel-h"><h2>Bis zum ersten Abschlag.</h2></div>
       <div class="count" id="count"></div>
@@ -568,7 +568,7 @@ html.noscroll{overflow:hidden}
   </section>
 
   <!-- PLATZ -->
-  <section role="tabpanel" id="platz" aria-labelledby="t-platz" hidden>
+  <section role="tabpanel" id="platz" aria-labelledby="t-platz">
     <div class="bdx">
       <section id="club">
         <h2 class="sh">Der Club.</h2>
@@ -1242,7 +1242,7 @@ async function pwInit() {
 
 function show(t, init) {
   const deep = TABS.includes(t);
-  if (!deep) t = 'leaderboard';
+  if (!deep) t = TABS[0];
   TABS.forEach(x => { $('#' + x).hidden = x !== t; $('#t-' + x).setAttribute('aria-selected', String(x === t)); });
   if (t === 'platz' && window.acRenderCourses) window.acRenderCourses();
   document.querySelectorAll('.tbar button').forEach(b => { const on = b.dataset.t === t || (b.dataset.t === 'mehr' && MORE.includes(t)); if (on) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
