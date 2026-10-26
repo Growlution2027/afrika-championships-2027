@@ -1,0 +1,315 @@
+{
+ "stand": "26.10.2026, Flights ausgelost",
+ "vorgaben": {},
+ "rounds": [
+  {
+   "runde": 1,
+   "datum": "2027-02-21",
+   "kombi": "Palmiers / La Mer"
+  },
+  {
+   "runde": 2,
+   "datum": "2027-02-22",
+   "kombi": "Palmiers / Les Acacias"
+  },
+  {
+   "runde": 3,
+   "datum": "2027-02-23",
+   "kombi": "La Mer / Les Acacias"
+  },
+  {
+   "runde": 4,
+   "datum": "2027-02-24",
+   "kombi": "Palmiers / La Mer"
+  },
+  {
+   "runde": 5,
+   "datum": "2027-02-25",
+   "kombi": "Palmiers / Les Acacias"
+  },
+  {
+   "runde": 6,
+   "datum": "2027-02-26",
+   "kombi": "La Mer / Les Acacias"
+  }
+ ],
+ "flights": [
+  {
+   "runde": 1,
+   "flight": 1,
+   "abschlag": "10:00",
+   "size": 3,
+   "players": [
+    "udo",
+    "dirk",
+    "markus"
+   ]
+  },
+  {
+   "runde": 1,
+   "flight": 2,
+   "abschlag": "10:10",
+   "size": 3,
+   "players": [
+    "georg",
+    "maurizio",
+    "hartmut"
+   ]
+  },
+  {
+   "runde": 1,
+   "flight": 3,
+   "abschlag": "10:20",
+   "size": 4,
+   "players": [
+    "klemens",
+    "peter",
+    "juergen",
+    "chau"
+   ]
+  },
+  {
+   "runde": 1,
+   "flight": 4,
+   "abschlag": "10:30",
+   "size": 4,
+   "players": [
+    "reinhold",
+    "klaus",
+    "volker",
+    "stefan"
+   ]
+  },
+  {
+   "runde": 2,
+   "flight": 1,
+   "abschlag": "10:00",
+   "size": 3,
+   "players": [
+    "reinhold",
+    "klemens",
+    "georg"
+   ]
+  },
+  {
+   "runde": 2,
+   "flight": 2,
+   "abschlag": "10:10",
+   "size": 3,
+   "players": [
+    "klaus",
+    "juergen",
+    "udo"
+   ]
+  },
+  {
+   "runde": 2,
+   "flight": 3,
+   "abschlag": "10:20",
+   "size": 4,
+   "players": [
+    "peter",
+    "maurizio",
+    "dirk",
+    "stefan"
+   ]
+  },
+  {
+   "runde": 2,
+   "flight": 4,
+   "abschlag": "10:30",
+   "size": 4,
+   "players": [
+    "hartmut",
+    "volker",
+    "chau",
+    "markus"
+   ]
+  },
+  {
+   "runde": 3,
+   "flight": 1,
+   "abschlag": "10:00",
+   "size": 3,
+   "players": [
+    "juergen",
+    "dirk",
+    "volker"
+   ]
+  },
+  {
+   "runde": 3,
+   "flight": 2,
+   "abschlag": "10:10",
+   "size": 3,
+   "players": [
+    "klemens",
+    "hartmut",
+    "stefan"
+   ]
+  },
+  {
+   "runde": 3,
+   "flight": 3,
+   "abschlag": "10:20",
+   "size": 4,
+   "players": [
+    "reinhold",
+    "maurizio",
+    "udo",
+    "chau"
+   ]
+  },
+  {
+   "runde": 3,
+   "flight": 4,
+   "abschlag": "10:30",
+   "size": 4,
+   "players": [
+    "klaus",
+    "peter",
+    "georg",
+    "markus"
+   ]
+  },
+  {
+   "runde": 4,
+   "flight": 1,
+   "abschlag": "10:00",
+   "size": 3,
+   "players": [
+    "klaus",
+    "chau",
+    "stefan"
+   ]
+  },
+  {
+   "runde": 4,
+   "flight": 2,
+   "abschlag": "10:10",
+   "size": 3,
+   "players": [
+    "peter",
+    "maurizio",
+    "volker"
+   ]
+  },
+  {
+   "runde": 4,
+   "flight": 3,
+   "abschlag": "10:20",
+   "size": 4,
+   "players": [
+    "klemens",
+    "georg",
+    "udo",
+    "dirk"
+   ]
+  },
+  {
+   "runde": 4,
+   "flight": 4,
+   "abschlag": "10:30",
+   "size": 4,
+   "players": [
+    "reinhold",
+    "juergen",
+    "hartmut",
+    "markus"
+   ]
+  },
+  {
+   "runde": 5,
+   "flight": 1,
+   "abschlag": "10:00",
+   "size": 3,
+   "players": [
+    "reinhold",
+    "peter",
+    "udo"
+   ]
+  },
+  {
+   "runde": 5,
+   "flight": 2,
+   "abschlag": "10:10",
+   "size": 3,
+   "players": [
+    "dirk",
+    "hartmut",
+    "chau"
+   ]
+  },
+  {
+   "runde": 5,
+   "flight": 3,
+   "abschlag": "10:20",
+   "size": 4,
+   "players": [
+    "klaus",
+    "klemens",
+    "maurizio",
+    "markus"
+   ]
+  },
+  {
+   "runde": 5,
+   "flight": 4,
+   "abschlag": "10:30",
+   "size": 4,
+   "players": [
+    "georg",
+    "juergen",
+    "volker",
+    "stefan"
+   ]
+  },
+  {
+   "runde": 6,
+   "flight": 1,
+   "abschlag": "10:00",
+   "size": 3,
+   "players": [
+    "maurizio",
+    "juergen",
+    "markus"
+   ]
+  },
+  {
+   "runde": 6,
+   "flight": 2,
+   "abschlag": "10:10",
+   "size": 3,
+   "players": [
+    "klaus",
+    "klemens",
+    "volker"
+   ]
+  },
+  {
+   "runde": 6,
+   "flight": 3,
+   "abschlag": "10:20",
+   "size": 4,
+   "players": [
+    "reinhold",
+    "georg",
+    "dirk",
+    "chau"
+   ]
+  },
+  {
+   "runde": 6,
+   "flight": 4,
+   "abschlag": "10:30",
+   "size": 4,
+   "players": [
+    "peter",
+    "udo",
+    "hartmut",
+    "stefan"
+   ]
+  }
+ ],
+ "scores": []
+}
