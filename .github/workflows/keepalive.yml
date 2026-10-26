@@ -1,0 +1,19 @@
+# Hält die Pinnwand-Datenbank (Supabase, kostenloser Tarif) wach:
+# zweimal pro Woche ein kurzer Abruf, damit das Projekt nicht pausiert wird.
+name: Pinnwand wach halten
+on:
+  schedule:
+    - cron: "17 6 * * 1,4"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pinnwand abrufen
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            "https://kjxffqmyxdgczlyktbjj.supabase.co/rest/v1/rpc/pw_vapid" \
+            -H "apikey: sb_publishable_KNeoTg8iDPLCTXSHPObmbA_YJxSC4xN" \
+            -H "Content-Type: application/json" -d '{}')
+          echo "Antwort: $code"
+          test "$code" = "200"
