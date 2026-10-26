@@ -139,7 +139,7 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
 .mk.bogey{box-shadow:0 0 0 1.5px var(--fg)}
 .mk.double{box-shadow:0 0 0 1.5px var(--fg),0 0 0 3.5px var(--surface),0 0 0 5px var(--fg)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:8px 16px 14px}
-.legend>span{display:inline-flex;align-items:center;gap:6px}.legend .mk{width:20px;height:20px;font-size:11px}
+.legend>span{display:inline-flex;align-items:center;gap:6px}.legend .mk{display:inline-grid;place-items:center;width:20px;height:20px;font-size:11px;line-height:1}
 
 /* Startzeiten */
 .days{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;scrollbar-width:none}
@@ -188,40 +188,98 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
 .tt td:first-child{white-space:nowrap;color:var(--muted);width:1%;padding-right:10px}
 .tt td b{font-family:var(--font-display);font-size:15px}
 
-/* Platz */
-.course-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;padding:16px}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin:0}
-.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:500}
-.plan{width:100%;border-radius:8px;border:1px solid var(--line);background:#fff}
-.loops{display:grid;grid-template-columns:1fr;gap:16px;padding:0 16px 16px}
-@media (min-width:900px){.loop{display:grid!important;grid-template-columns:300px minmax(0,1fr)}.loop .img{aspect-ratio:auto;min-height:100%}}
-.loop{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;background:var(--surface)}
-.loop .img{aspect-ratio:16/9;background:var(--surface-2) center/cover;max-width:100%}
-.loop .bd{padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.loop h3{font-size:24px;text-transform:uppercase;display:flex;align-items:baseline;gap:2px 8px;flex-wrap:wrap}
-.loop h3 small{font-family:var(--font-body);font-size:13px;color:var(--muted);text-transform:none;font-weight:500}
-.lens{display:flex;gap:6px;flex-wrap:wrap;font-size:12px}
-.lens span{display:inline-flex;align-items:center;gap:5px;background:var(--surface-2);border-radius:999px;padding:2px 9px}
-.lens i{width:9px;height:9px;border-radius:50%;display:inline-block;border:1px solid var(--line)}
-table.holes{border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums;width:100%;min-width:430px}
-.holes th{white-space:nowrap;width:1%}
-.holes tr.hd td,.holes tr.par td{font-weight:600}
-.holes tr.hcp td,.holes tr.hcp th{color:var(--muted)}
-.holes td.tot{background:var(--surface-2);font-weight:600}
-.holes th,.holes td{border:1px solid var(--line);text-align:center;padding:3px 2px}
-.holes th{background:var(--surface-2);color:var(--muted);font-weight:600;text-align:left;padding:3px 6px}
-.combo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px;padding:0 16px 16px}
-.combo div{background:var(--surface-2);border-radius:8px;padding:10px 12px}
-.combo b{font-family:var(--font-display);font-size:24px}
-.src{font-size:12px;color:var(--muted);padding:0 16px 16px;margin:0}
-.src a{color:var(--blue)}
-
 /* Statistik */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px;padding:16px}
 .tile{background:var(--surface-2);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .tile span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .tile b{font-family:var(--font-display);font-size:30px;font-weight:700;line-height:1}
 .tile em{font-style:normal;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== Club, Plätze, Galerie im Stil der Birdie Lindemann Open ===== */
+.bdx{--bg2:#f5f5f7;--card:#ffffff;--fg2:#6e6e73;--fg3:#86868b;--bline:#d2d2d7;--accent:#0071e3;--p3:#a1c7f0;--p4:#4f8fdc;--p5:#1d4e9a;--seg:#e8e8ed;--segon:#fff;--bbg:#ffffff;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:-.01em;line-height:1.4;background:var(--bbg);color:var(--fg);border-radius:var(--r);padding:8px 22px 32px;border:1px solid var(--line)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bdx{--bg2:#161617;--card:#1d1d1f;--fg2:#a1a1a6;--fg3:#86868b;--bline:#424245;--accent:#2997ff;--p3:#3b5f8a;--p4:#3d7fd0;--p5:#8fc0f5;--seg:#2c2c2e;--segon:#636366;--bbg:#000}}
+:root[data-theme="dark"] .bdx{--bg2:#161617;--card:#1d1d1f;--fg2:#a1a1a6;--fg3:#86868b;--bline:#424245;--accent:#2997ff;--p3:#3b5f8a;--p4:#3d7fd0;--p5:#8fc0f5;--seg:#2c2c2e;--segon:#636366;--bbg:#000}
+.bdx>section{padding-top:48px}
+.bdx .sh{font-family:inherit;font-size:clamp(32px,5.4vw,52px);font-weight:700;letter-spacing:-.03em;margin:0;line-height:1.05;text-transform:none}
+.bdx .ss{color:var(--fg2);font-size:clamp(16px,2vw,20px);margin:10px 0 0;max-width:760px}
+.bdx .h3c{font-family:inherit;font-size:26px;letter-spacing:-.02em;margin:56px 0 0;text-transform:none;font-weight:700}
+.bdx .plan{margin:32px 0 0;background:#e9e2c5;border-radius:22px;overflow:hidden}
+.bdx .plan img{display:block;width:100%;height:auto;max-width:760px;margin:0 auto}
+.bdx .plan figcaption{background:var(--bg2);color:var(--fg2);font-size:13px;padding:12px 18px}
+.bdx .intro{font-size:clamp(18px,2.3vw,24px);line-height:1.38;font-weight:500;letter-spacing:-.015em;margin:20px 0 0;max-width:860px}
+.bdx .clubfacts{display:grid;grid-template-columns:repeat(5,1fr);margin-top:36px;border-top:1px solid var(--bline);border-bottom:1px solid var(--bline)}
+.bdx .cf{padding:22px 16px 22px 0;min-width:0}
+.bdx .cf+.cf{padding-left:18px;border-left:1px solid var(--bline)}
+.bdx .cf .v{white-space:nowrap;font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.035em;line-height:1}
+.bdx .cf .k{font-size:13px;color:var(--fg2);margin-top:8px}
+.bdx .seg{display:inline-flex;background:var(--seg);border-radius:10px;padding:3px;gap:2px;margin:24px 0 0;flex-wrap:wrap}
+.bdx .seg button{all:unset;cursor:pointer;padding:7px 14px;border-radius:8px;font-size:14px;font-weight:600;color:var(--fg2);display:inline-flex;align-items:center;gap:6px}
+.bdx .seg button[aria-pressed=true]{background:var(--segon);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.bdx .dot{width:9px;height:9px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+.bdx .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.bdx .cc{background:var(--bg2);border-radius:18px;padding:22px 20px;cursor:pointer;transition:transform .25s;overflow:hidden}
+.bdx .cc:hover{transform:scale(1.015)}
+.bdx .cc .illu{margin:-22px -20px 16px;border-radius:18px 18px 0 0;overflow:hidden;line-height:0}
+.bdx .cc .illu img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.bdx .cc[aria-current=true]{outline:2px solid var(--accent);outline-offset:-2px}
+.bdx .cc .k{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--fg2)}
+.bdx .cc .t{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:6px}
+.bdx .cc .big{font-size:44px;font-weight:700;letter-spacing:-.03em;margin-top:14px;line-height:1}
+.bdx .cc .meta{font-size:14px;color:var(--fg2);margin-top:8px}
+.bdx .mix{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:14px;gap:2px}
+.bdx .mix i{display:block;height:100%}
+.bdx .mixl{display:flex;gap:12px;font-size:12px;color:var(--fg3);margin-top:8px;flex-wrap:wrap}
+.bdx .swipe{display:none;font-size:12px;color:var(--fg3);margin:8px 0 0;text-align:center}
+.bdx .bcard{background:var(--bg2);border-radius:22px;padding:24px 18px;margin-top:20px}
+.bdx .detail h3{font-family:inherit;margin:0;font-size:26px;font-weight:700;letter-spacing:-.02em;text-transform:none}
+.bdx .detail .char{color:var(--fg2);font-size:16px;margin:6px 0 0;max-width:720px}
+.bdx .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.bdx .f{background:var(--bbg);border-radius:14px;padding:14px}
+.bdx .f .k{font-size:12px;color:var(--fg2);font-weight:600}
+.bdx .f .v{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:4px}
+.bdx .f .u{font-size:12px;color:var(--fg3);margin-top:2px}
+.bdx .chart{margin-top:22px}
+.bdx .chart svg{display:block;width:100%;height:auto;overflow:visible}
+.bdx .chart text{font-family:inherit}
+.bdx .blegend{display:flex;flex-wrap:wrap;gap:14px;margin:18px 4px 0;font-size:12px;color:var(--fg2);align-items:center}
+.bdx .blegend span{display:inline-flex;align-items:center}
+.bdx .blegend i{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:6px}
+.bdx .hp{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:18px;font-size:14px}
+.bdx .hp th,.bdx .hp td{padding:8px 2px;text-align:center;border-top:1px solid var(--bline)}
+.bdx .hp th{text-align:left;font-weight:500;color:var(--fg2);font-size:12px;width:170px;padding-left:2px;line-height:1.3}
+.bdx .hp tr:first-child th,.bdx .hp tr:first-child td{border-top:none;color:var(--fg3);font-size:12px}
+.bdx .combo{width:100%;border-collapse:collapse;margin-top:24px;font-size:15px}
+.bdx .combo th,.bdx .combo td{padding:13px 8px;text-align:right;border-top:1px solid var(--bline)}
+.bdx .combo th{font-size:12px;color:var(--fg2);font-weight:600;border-top:none}
+.bdx .combo td:first-child,.bdx .combo th:first-child{text-align:left}
+.bdx .combo td:first-child b{font-weight:600}
+.bdx .combo .rtag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);margin-left:8px}
+.bdx .note{font-size:13px;color:var(--fg3);margin-top:14px;max-width:760px;padding:0}
+.bdx .gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;grid-auto-flow:dense;gap:12px;margin-top:28px}
+.bdx .gal figure{margin:0;position:relative;border-radius:18px;overflow:hidden;background:var(--bg2);cursor:zoom-in}
+.bdx .gal figure.b{grid-column:span 2;grid-row:span 2}.bdx .gal figure.w{grid-column:span 2}.bdx .gal figure.t{grid-row:span 2}
+.bdx .gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bdx .gal figure:hover img{transform:scale(1.03)}
+.bdx .gal figcaption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px}
+#lb{border:0;padding:0;background:transparent;max-width:96vw;max-height:92vh;overflow:visible}
+#lb::backdrop{background:rgba(0,0,0,.88)}
+#lb img{max-width:96vw;max-height:88vh;display:block;border-radius:14px}
+#lb p{color:#fff;text-align:center;font-size:13px;margin:10px 0 0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+.lbn,.lbx{position:fixed;border:0;background:rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;width:44px;height:44px;border-radius:50%;font-size:28px;line-height:40px;cursor:pointer}
+.lbn{top:50%;transform:translateY(-50%)}.lbn.prev{left:16px}.lbn.next{right:16px}.lbx{top:max(16px,env(safe-area-inset-top,0px));right:16px;font-size:24px}
+@media (max-width:760px){
+  .bdx{padding:4px 14px 24px}
+  .bdx .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-14px;padding:2px 14px 6px;scrollbar-width:none}.bdx .gal::-webkit-scrollbar{display:none}
+  .bdx .gal figure{flex:0 0 82%;height:300px;scroll-snap-align:center}.bdx .gal figure.b,.bdx .gal figure.w,.bdx .gal figure.t{grid-row:auto;grid-column:auto}
+  .bdx .clubfacts{grid-template-columns:1fr 1fr}.bdx .cf{padding:18px 12px 18px 0!important;border-left:none!important;border-bottom:1px solid var(--bline)}.bdx .cf:nth-child(even){padding-left:14px!important;border-left:1px solid var(--bline)!important}.bdx .cf:last-child{grid-column:span 2;border-bottom:none}
+  .bdx .grid3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:-14px;padding:2px 14px 6px;scrollbar-width:none}.bdx .grid3::-webkit-scrollbar{display:none}
+  .bdx .grid3 .cc{flex:0 0 80%;scroll-snap-align:center;padding:18px 16px}.bdx .grid3 .cc .illu{margin:-18px -16px 14px}.bdx .grid3 .cc .big{font-size:32px;margin-top:10px}.bdx .swipe{display:block}
+  .bdx .facts{grid-template-columns:1fr 1fr}
+  .bdx .bcard{padding:20px 10px}
+  .bdx .hp th{width:90px;font-size:11px}.bdx .hp td{font-size:12px}
+  .bdx .combo .opt{display:none}.bdx .combo{font-size:13px}.bdx .combo th,.bdx .combo td{padding:11px 4px}.bdx .combo td:first-child b{white-space:normal}
+}
 </style>
 
 </head>
@@ -235,6 +293,7 @@ table.holes{border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabul
       <button class="tab" role="tab" id="t-spieler" aria-controls="spieler" aria-selected="false">Spieler</button>
       <button class="tab" role="tab" id="t-platz" aria-controls="platz" aria-selected="false">Platz</button>
       <button class="tab" role="tab" id="t-statistik" aria-controls="statistik" aria-selected="false">Statistik</button>
+      <button class="tab" role="tab" id="t-galerie" aria-controls="galerie" aria-selected="false">Galerie</button>
     </nav>
   </div>
 </header>
@@ -242,9 +301,9 @@ table.holes{border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabul
 <div class="wrap">
   <div class="hero" style="background-image:url(img-hero.jpg)">
     <div class="in">
-      <div class="eyebrow">Djerba Golf Club · 21.–26.02.2027</div>
       <h1>Afrika Championships 2027</h1>
-      <p>14 Spieler · 6 Runden · 108 Loch · Zählspiel brutto und netto</p>
+      <div class="eyebrow">Djerba Golf Club · 21.–26.02.2027</div>
+      <p>108 Löcher. Jeder Putt zählt.</p>
       <div class="status" id="status"></div>
     </div>
   </div>
@@ -254,15 +313,15 @@ table.holes{border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabul
   <!-- LEADERBOARD -->
   <section role="tabpanel" id="leaderboard" aria-labelledby="t-leaderboard">
     <div class="panel" id="countdown-panel" hidden>
-      <div class="panel-h"><h2>Bis zum ersten Abschlag</h2><span class="sub" id="cd-sub"></span></div>
+      <div class="panel-h"><h2>Bis zum ersten Abschlag</h2></div>
       <div class="count" id="count"></div>
     </div>
     <div class="panel">
       <div class="panel-h">
         <h2>Leaderboard</h2><span class="sub" id="lb-sub"></span>
         <div class="seg" role="group" aria-label="Wertung">
-          <button type="button" id="m-netto" aria-pressed="true">Netto</button>
-          <button type="button" id="m-brutto" aria-pressed="false">Brutto</button>
+          <button type="button" id="m-brutto" aria-pressed="true">Brutto</button>
+          <button type="button" id="m-netto" aria-pressed="false">Netto</button>
         </div>
       </div>
       <div id="lb-banner"></div>
@@ -303,53 +362,36 @@ table.holes{border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabul
 
   <!-- PLATZ -->
   <section role="tabpanel" id="platz" aria-labelledby="t-platz" hidden>
-    <div class="panel">
-      <div class="panel-h"><h2>Djerba Golf Club</h2><span class="sub">27 Loch · drei 9-Loch-Plätze, frei zu 18 Loch kombinierbar</span></div>
-      <div class="course-hero">
-        <dl class="kv">
-          <dt>Anlage</dt><dd>27 Loch auf drei 9-Loch-Plätzen: Les Palmiers, La Mer, Les Acacias</dd>
-          <dt>Eröffnet</dt><dd>1995</dd>
-          <dt>Architekt</dt><dd>Martin Hawtree (Palmiers und La Mer)</dd>
-          <dt>Charakter</dt><dd>Links, flach bis leicht hügelig, viel Wasser, Palmen und Meerblick</dd>
-          <dt>Lage</dt><dd>Zone touristique, Djerba-Midoun</dd>
-          <dt>Telefon</dt><dd class="num">+216 75 745 055</dd>
-          <dt>Übung</dt><dd>Driving Range mit 40 Abschlägen, Putting-, Pitching- und Chipping-Green, Übungsbunker</dd>
-          <dt>Clubhaus</dt><dd>Bar, Snackbar, Restaurant, Proshop, Academy</dd>
-          <dt>Greenfees</dt><dd>Werden über das Hotel gebucht und auf der Zimmerrechnung belastet</dd>
-        </dl>
-        <img class="plan" src="img-plan.jpg" alt="Lageplan des Djerba Golf Club mit den Plätzen Acacias, La Mer und Palmiers rund um das Clubhaus">
-      </div>
-      <div class="combo" id="combos"></div>
-      <div class="loops">
-        <article class="loop">
-          <div class="img" style="background-image:url(img-palmiers.jpg)" role="img" aria-label="Fairway auf Les Palmiers mit Palmenreihe"></div>
-          <div class="bd">
-            <h3>Les Palmiers <small id="sm-P"></small></h3>
-            <div class="lens" id="ln-P"></div>
-            <p class="note" style="padding:0">Der Platz mit dem höchsten Par: drei Par 5, das längste misst 521 m von Weiß. Gefragt sind lange und platzierte Schläge, dazu Wasserhindernisse im Spiel.</p>
-            <div class="sc-scroll"><table class="holes" id="h-P"></table></div>
-          </div>
-        </article>
-        <article class="loop">
-          <div class="img" style="background-image:url(img-lamer.jpg)" role="img" aria-label="Grün auf La Mer mit Teich, Dünen und Meer"></div>
-          <div class="bd">
-            <h3>La Mer <small id="sm-M"></small></h3>
-            <div class="lens" id="ln-M"></div>
-            <p class="note" style="padding:0">Die längsten Spielbahnen der Anlage. Einige Fairways und Grüns liegen direkt am Meer, hier entscheidet vor allem der Wind.</p>
-            <div class="sc-scroll"><table class="holes" id="h-M"></table></div>
-          </div>
-        </article>
-        <article class="loop">
-          <div class="img" style="background-image:url(img-acacias.jpg)" role="img" aria-label="Grün auf Les Acacias mit Palmen"></div>
-          <div class="bd">
-            <h3>Les Acacias <small id="sm-A"></small></h3>
-            <div class="lens" id="ln-A"></div>
-            <p class="note" style="padding:0">Der kürzeste Platz, Par 35: sechs Par 4, zwei Par 3 und ein Par 5.</p>
-            <div class="sc-scroll"><table class="holes" id="h-A"></table></div>
-          </div>
-        </article>
-      </div>
-      <p class="src">Längen, Par und Lochvorgaben von den Original-Scorecards des Djerba Golf Club (wie bei der Birdie Lindemann Open). Die Lochvorgaben gelten je Kombination: Palmiers und Les Acacias behalten ihre Werte immer, auf La Mer verschieben sie sich, je nachdem ob der Platz vorne oder hinten gespielt wird. Anlage und Ausstattung: <a href="https://www.1golf.eu/club/djerba-golf-club/" target="_blank" rel="noopener">1golf.eu</a>; Architekt: <a href="https://www.top100golfcourses.com/golf-course/djerba-la-mer-and-les-palmiers" target="_blank" rel="noopener">Top 100 Golf Courses</a>.</p>
+    <div class="bdx">
+      <section id="club">
+        <h2 class="sh">Der Club.</h2>
+        <p class="intro">Der Djerba Golf Club liegt in der Zone touristique von Midoun an der Ostküste der Insel, zwischen Dattelpalmen, Dünen und Mittelmeer. Martin Hawtree hat die Anlage 1995 als Links-Kurs angelegt: 27 Loch auf drei 9-Loch-Plätzen, die sich frei zu 18 Loch kombinieren lassen. Les Palmiers hat mit drei Par 5 das höchste Par, auf La Mer liegen einige Fairways und Grüns direkt am Meer, Les Acacias ist der kürzeste Platz. Range, Putting- und Chipping-Grüns liegen direkt am Clubhaus. Die Greenfees laufen über das Hotel und stehen auf der Zimmerrechnung.</p>
+        <figure class="plan"><img src="lageplan.jpg" alt="Lageplan des Djerba Golf Club mit den Plätzen Acacias, La Mer und Palmiers, Clubhaus und Practice" loading="lazy"><figcaption>Lageplan der Anlage: Les Acacias links, La Mer oben am Meer, Les Palmiers rechts, dazwischen Clubhaus und Practice. Plan: Djerba Golf Club.</figcaption></figure>
+        <div class="clubfacts" id="clubfacts"></div>
+      </section>
+      <section id="plaetze">
+        <h2 class="sh">Drei Plätze. Ein Kurs.</h2>
+        <p class="ss">Tippe auf einen Platz für Lochlängen und Lochvorgaben. Der Abschlag lässt sich umschalten.</p>
+        <div class="seg" id="tees" role="group" aria-label="Abschlag"></div>
+        <div class="grid3" id="overview"></div>
+        <p class="swipe">Wischen für weitere Plätze · Tippen zeigt die Details</p>
+        <div class="bcard detail" id="detail"></div>
+        <h3 class="h3c">Die Kombinationen.</h3>
+        <div style="overflow-x:auto"><table class="combo num" id="combos"></table></div>
+        <p class="note">Lochvorgaben gelten je Kombination. Palmiers und Les Acacias behalten ihre Werte immer, auf La Mer verschieben sie sich, je nachdem ob der Platz vorne oder hinten gespielt wird. Längen, Par und Lochvorgaben von den Original-Scorecards des Djerba Golf Club.</p>
+      </section>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section role="tabpanel" id="galerie" aria-labelledby="t-galerie" hidden>
+    <div class="bdx">
+      <section>
+        <h2 class="sh">Galerie.</h2>
+        <p class="ss" id="gal-n">Eindrücke vom Djerba Golf Club.</p>
+        <div class="gal" id="gal"></div>
+        <p class="swipe">Wischen für weitere Bilder · Tippen vergrößert</p>
+      </section>
     </div>
   </section>
 
@@ -372,7 +414,8 @@ table.holes{border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabul
 
 <script>
 (() => {
-const IMG = {"av_maurizio": "img-av_maurizio.jpg", "av_chau": "img-av_chau.jpg", "av_dirk": "img-av_dirk.jpg", "av_klemens": "img-av_klemens.jpg", "av_peter": "img-av_peter.jpg", "av_markus": "img-av_markus.jpg", "av_georg": "img-av_georg.jpg", "av_reinhold": "img-av_reinhold.jpg", "card_maurizio": "img-card_maurizio.jpg", "card_chau": "img-card_chau.jpg", "card_dirk": "img-card_dirk.jpg", "card_klemens": "img-card_klemens.jpg", "card_peter": "img-card_peter.jpg", "card_markus": "img-card_markus.jpg", "card_georg": "img-card_georg.jpg", "card_reinhold": "img-card_reinhold.jpg", "av_volker": "img-av_volker.jpg", "card_volker": "img-card_volker.jpg"};
+const IMG = {"av_maurizio": "img-av_maurizio.jpg", "av_chau": "img-av_chau.jpg", "av_dirk": "img-av_dirk.jpg", "av_klemens": "img-av_klemens.jpg", "av_peter": "img-av_peter.jpg", "av_markus": "img-av_markus.jpg", "av_georg": "img-av_georg.jpg", "av_reinhold": "img-av_reinhold.jpg", "card_maurizio": "img-card_maurizio.jpg", "card_chau": "img-card_chau.jpg", "card_dirk": "img-card_dirk.jpg", "card_klemens": "img-card_klemens.jpg", "card_peter": "img-card_peter.jpg", "card_markus": "img-card_markus.jpg", "card_georg": "img-card_georg.jpg", "card_reinhold": "img-card_reinhold.jpg", "av_volker": "img-av_volker.jpg", "card_volker": "img-card_volker.jpg", "platz_P": "platz-palmiers.jpg", "platz_M": "platz-lamer.jpg", "platz_A": "platz-acacias.jpg"};
+const GAL_BASE = '';
 const PLAYERS = [
   {id:'maurizio', fn:'Maurizio', ln:'Lindemann', role:'Handicap-Betreuer', sub:'Sozialverträgliche HCP-Betreuung', y26:true, note:'Organisator der Afrika Championships'},
   {id:'reinhold', fn:'Reinhold', ln:'Bagus', y26:true},
@@ -393,11 +436,11 @@ const P = Object.fromEntries(PLAYERS.map(p => [p.id, p]));
 const DAYS = ['2027-02-21','2027-02-22','2027-02-23','2027-02-24','2027-02-25','2027-02-26'];
 // Längen in Metern, Par und Lochvorgaben von den Original-Scorecards des Djerba Golf Club
 const COURSES = {
- P:{name:'Les Palmiers', par:[4,3,5,4,4,5,4,3,5],
+ P:{name:'Les Palmiers', short:'Palmiers', char:'Der Platz mit dem höchsten Par: drei Par 5, das längste misst 521 m von Weiß. Gefragt sind lange und platzierte Schläge, dazu Wasserhindernisse im Spiel.', par:[4,3,5,4,4,5,4,3,5],
   W:[345,145,484,329,275,521,273,170,503], G:[304,139,458,303,249,501,260,138,475], B:[280,133,420,274,238,462,250,118,455], R:[253,119,397,220,206,439,232,99,435]},
- M:{name:'La Mer', par:[4,4,4,5,4,3,5,4,3],
+ M:{name:'La Mer', short:'La Mer', char:'Die längsten Spielbahnen der Anlage. Einige Fairways und Grüns liegen direkt am Meer, hier entscheidet vor allem der Wind.', par:[4,4,4,5,4,3,5,4,3],
   W:[335,409,384,459,390,138,457,385,153], G:[324,379,357,443,368,116,439,350,120], B:[309,342,328,407,325,93,416,316,99], R:[281,309,292,373,298,83,368,292,86]},
- A:{name:'Les Acacias', par:[4,4,5,3,4,3,4,4,4],
+ A:{name:'Les Acacias', short:'Les Acacias', char:'Der kürzeste Platz, Par 35: sechs Par 4, zwei Par 3 und ein Par 5.', par:[4,4,5,3,4,3,4,4,4],
   W:[358,261,503,145,324,166,296,331,340], G:[329,239,473,119,296,142,262,308,314], B:[272,199,439,83,273,118,228,236,255], R:[266,192,432,79,267,112,223,232,246]}
 };
 const COMBOS = {
@@ -415,7 +458,7 @@ let state = {
   flights: [{"runde": 1, "flight": 1, "abschlag": "10:00", "size": 3, "players": ["udo", "dirk", "markus"]}, {"runde": 1, "flight": 2, "abschlag": "10:10", "size": 3, "players": ["georg", "maurizio", "hartmut"]}, {"runde": 1, "flight": 3, "abschlag": "10:20", "size": 4, "players": ["klemens", "peter", "juergen", "chau"]}, {"runde": 1, "flight": 4, "abschlag": "10:30", "size": 4, "players": ["reinhold", "klaus", "volker", "stefan"]}, {"runde": 2, "flight": 1, "abschlag": "10:00", "size": 3, "players": ["reinhold", "klemens", "georg"]}, {"runde": 2, "flight": 2, "abschlag": "10:10", "size": 3, "players": ["klaus", "juergen", "udo"]}, {"runde": 2, "flight": 3, "abschlag": "10:20", "size": 4, "players": ["peter", "maurizio", "dirk", "stefan"]}, {"runde": 2, "flight": 4, "abschlag": "10:30", "size": 4, "players": ["hartmut", "volker", "chau", "markus"]}, {"runde": 3, "flight": 1, "abschlag": "10:00", "size": 3, "players": ["juergen", "dirk", "volker"]}, {"runde": 3, "flight": 2, "abschlag": "10:10", "size": 3, "players": ["klemens", "hartmut", "stefan"]}, {"runde": 3, "flight": 3, "abschlag": "10:20", "size": 4, "players": ["reinhold", "maurizio", "udo", "chau"]}, {"runde": 3, "flight": 4, "abschlag": "10:30", "size": 4, "players": ["klaus", "peter", "georg", "markus"]}, {"runde": 4, "flight": 1, "abschlag": "10:00", "size": 3, "players": ["klaus", "chau", "stefan"]}, {"runde": 4, "flight": 2, "abschlag": "10:10", "size": 3, "players": ["peter", "maurizio", "volker"]}, {"runde": 4, "flight": 3, "abschlag": "10:20", "size": 4, "players": ["klemens", "georg", "udo", "dirk"]}, {"runde": 4, "flight": 4, "abschlag": "10:30", "size": 4, "players": ["reinhold", "juergen", "hartmut", "markus"]}, {"runde": 5, "flight": 1, "abschlag": "10:00", "size": 3, "players": ["reinhold", "peter", "udo"]}, {"runde": 5, "flight": 2, "abschlag": "10:10", "size": 3, "players": ["dirk", "hartmut", "chau"]}, {"runde": 5, "flight": 3, "abschlag": "10:20", "size": 4, "players": ["klaus", "klemens", "maurizio", "markus"]}, {"runde": 5, "flight": 4, "abschlag": "10:30", "size": 4, "players": ["georg", "juergen", "volker", "stefan"]}, {"runde": 6, "flight": 1, "abschlag": "10:00", "size": 3, "players": ["maurizio", "juergen", "markus"]}, {"runde": 6, "flight": 2, "abschlag": "10:10", "size": 3, "players": ["klaus", "klemens", "volker"]}, {"runde": 6, "flight": 3, "abschlag": "10:20", "size": 4, "players": ["reinhold", "georg", "dirk", "chau"]}, {"runde": 6, "flight": 4, "abschlag": "10:30", "size": 4, "players": ["peter", "udo", "hartmut", "stefan"]}],
   scores: []                             // {runde, spieler, holes:[{platz,loch,par,hcp,s,p}]}
 };
-let mode = 'netto', openRow = null, dayIdx = null;
+let mode = 'brutto', openRow = null, dayIdx = null;
 
 const $ = s => document.querySelector(s);
 const el = (tag, attrs = {}, kids = []) => { const e = document.createElement(tag); for (const [k,v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else if (k === 'style') e.setAttribute('style', v); else e.setAttribute(k, v); } (Array.isArray(kids) ? kids : [kids]).forEach(c => c != null && e.append(c)); return e; };
@@ -480,8 +523,6 @@ function renderStatus() {
     const ms = FIRST_TEE - now, D = Math.floor(ms/86400000), H = Math.floor(ms/3600000)%24, M = Math.floor(ms/60000)%60, S = Math.floor(ms/1000)%60;
     const c = $('#count'); c.innerHTML = '';
     [[D,'Tage'],[H,'Std.'],[M,'Min.'],[S,'Sek.']].forEach(([v,l]) => c.append(el('div', {}, [el('b', {class:'num', text:String(v)}), el('span', {text:l})])));
-    const f1 = state.flights.find(f => f.runde === 1 && f.flight === 1);
-    $('#cd-sub').textContent = 'So 21.02.2027, 10:00 Uhr' + (f1 ? ' · Flight 1: ' + f1.players.map(id => P[id].fn).join(', ') : '');
   } else cp.hidden = true;
 }
 
@@ -495,7 +536,7 @@ function renderLB() {
   const st = standings(cr, mode);
   const prev = cr > 1 ? standings(cr - 1, mode) : null;
   $('#sum-h').textContent = mode === 'netto' ? 'Netto' : 'Schläge';
-  $('#lb-sub').textContent = cr ? 'Stand Runde ' + cr + ' · ' + (mode === 'netto' ? 'Netto' : 'Brutto') : 'Vor dem Turnier · ' + (mode === 'netto' ? 'Netto' : 'Brutto');
+  $('#lb-sub').textContent = cr ? 'Stand nach Runde ' + cr : '';
   st.forEach(r => {
     const p = r.p, cur = cr ? roundOf(p.id, cr) : null;
     const tr = el('tr', {class:'row' + (openRow === p.id ? ' open' : ''), tabindex:'0', 'aria-expanded': String(openRow === p.id)});
@@ -598,7 +639,7 @@ function openProfile(id) {
   const close = el('button', {type:'button', class:'x', 'aria-label':'Profil schließen', text:'×'}); ph.append(close);
   const facts = el('div', {class:'facts'}, [
     ['Spielvorgabe', state.vorgaben[id] != null ? String(state.vorgaben[id]) : 'offen'],
-    ['Platz netto', stN && stN.any ? stN.pos : '–'], ['Platz brutto', stB && stB.any ? stB.pos : '–'],
+    ['Platz brutto', stB && stB.any ? stB.pos : '–'], ['Platz netto', stN && stN.any ? stN.pos : '–'],
     ['Runden', String(rs.length) + ' / 6'], ['Beste Runde', best != null ? String(best) : '–'],
     ['Ø Putts', rs.length ? de1(rs.reduce((a,x)=>a+x.putts,0)/rs.length) : '–'],
     ['Birdies+', rs.length ? String(rs.reduce((a,x)=>a+x.birdies,0)) : '–'], ['3-Putts', rs.length ? String(rs.reduce((a,x)=>a+x.three,0)) : '–']
@@ -624,25 +665,86 @@ function openProfile(id) {
 
 /* ---------- Platz ---------- */
 function renderHoles() {
-  const sum = a => a.reduce((x,y) => x + y, 0), f = n => n.toLocaleString('de-DE');
-  const cb = $('#combos'); cb.innerHTML = '';
-  Object.values(COMBOS).forEach(c => { const par = sum(COURSES[c.a].par) + sum(COURSES[c.b].par); const len = sum(COURSES[c.a].G) + sum(COURSES[c.b].G);
-    const rds = ROUND_COMBO.map((k,i) => COMBOS[k] === c ? i + 1 : null).filter(Boolean);
-    cb.append(el('div', {}, [el('span', {class:'tag', text: c.name}), el('br'), el('b', {text: 'Par ' + par}), el('div', {class:'note', style:'padding:2px 0 0', text: f(len) + ' m ab Gelb · Runde ' + rds.join(' und ')})])); });
-  Object.entries(COURSES).forEach(([k, C]) => {
-    $('#sm-' + k).textContent = 'Par ' + sum(C.par);
-    const ln = $('#ln-' + k); ln.innerHTML = '';
-    TEES.forEach(([c, n, col]) => ln.append(el('span', {}, [el('i', {style:'background:' + col}), n + ' ' + f(sum(C[c])) + ' m'])));
-    const t = $('#h-' + k); t.innerHTML = '';
-    const row = (label, vals, total, cls) => { const tr = el('tr', {class: cls || ''}, [el('th', {text: label})]); vals.forEach(v => tr.append(el('td', {text: String(v)}))); tr.append(el('td', {class:'tot', text: total == null ? '' : String(total)})); t.append(tr); };
-    row('Loch', C.par.map((_, i) => i + 1), 'Σ', 'hd');
-    row('Par', C.par, sum(C.par), 'par');
-    TEES.forEach(([c, n]) => row(n + ' m', C[c], sum(C[c])));
-    const seen = [];
-    Object.values(COMBOS).forEach(cmb => { if (cmb.a !== k && cmb.b !== k) return; const h = cmb.a === k ? cmb.hp.slice(0,9) : cmb.hp.slice(9); const key = h.join(','); const s = seen.find(x => x.key === key); if (s) s.n.push(cmb.name); else seen.push({key, h, n:[cmb.name], pos: cmb.a === k ? 'vorne' : 'hinten'}); });
-    if (seen.length === 1) row('Lochvorgabe', seen[0].h, null, 'hcp');
-    else seen.sort((x,y) => x.pos === 'vorne' ? -1 : 1).forEach(s => row('Vorgabe ' + s.pos, s.h, null, 'hcp'));
-  });
+  const bel = (tg, c, x) => { const e = document.createElement(tg); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  const sum = a => a.reduce((s,v) => s + v, 0), f = n => n.toLocaleString('de-DE');
+  const PHOTO = {P: IMG.platz_P, M: IMG.platz_M, A: IMG.platz_A};
+  let tee = 'G', cur = 'P';
+  // Club-Fakten
+  const pars = Object.values(COMBOS).map(c => sum(COURSES[c.a].par) + sum(COURSES[c.b].par));
+  const longest = Math.max(...Object.values(COMBOS).map(c => sum(COURSES[c.a].W) + sum(COURSES[c.b].W)));
+  const cf = $('#clubfacts'); cf.innerHTML = '';
+  [['27','Löcher'],['3','Plätze à 9 Loch'],['Par ' + Math.min(...pars) + '–' + Math.max(...pars),'je Kombination'],[f(longest) + ' m','längste Runde, Weiß'],['1995','eröffnet, Design Martin Hawtree']]
+    .forEach(([v,k]) => { const d = bel('div','cf'); d.append(bel('div','v num',v), bel('div','k',k)); cf.append(d); });
+  const hpFor = id => Object.values(COMBOS).filter(c => c.a === id || c.b === id).map(c => ['Lochvorgabe ' + c.name, c.a === id ? c.hp.slice(0,9) : c.hp.slice(9)]);
+  const isSwipe = () => { const o = $('#overview'); return o.scrollWidth > o.clientWidth + 4; };
+  function render() {
+    const tt = $('#tees'); tt.innerHTML = '';
+    [['G','Gelb','#f2d03b'],['W','Weiß','#ffffff'],['B','Blau','#3a7bd5'],['R','Rot','#d93a3a']].forEach(([k,l,c]) => { const b = bel('button'); b.type = 'button'; b.setAttribute('aria-pressed', k === tee); const d = bel('span','dot'); d.style.background = c; b.append(d, document.createTextNode(l)); b.onclick = () => { tee = k; render(); }; tt.append(b); });
+    const o = $('#overview'), keepX = o.scrollLeft; o.innerHTML = '';
+    Object.entries(COURSES).forEach(([id,c]) => {
+      const d = bel('div','cc'); d.dataset.id = id; d.setAttribute('aria-current', id === cur); d.setAttribute('role','button'); d.tabIndex = 0;
+      d.onclick = () => { cur = id; render(); if (isSwipe()) { const x = o.querySelector('[data-id="' + id + '"]'); x && x.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); } };
+      const ill = bel('div','illu'), im = bel('img'); im.src = PHOTO[id]; im.alt = 'Platz ' + c.name; im.loading = 'lazy'; ill.append(im); d.append(ill);
+      d.append(bel('div','k','9-Loch-Platz'), bel('div','t',c.name), bel('div','big num','Par ' + sum(c.par)), bel('div','meta num', f(sum(c[tee])) + ' m · längstes Loch ' + f(Math.max(...c[tee])) + ' m'));
+      const mix = bel('div','mix'); [[3,'--p3'],[4,'--p4'],[5,'--p5']].forEach(([pp,v]) => { const i = bel('i'); i.style.flex = c.par.filter(x => x === pp).length; i.style.background = 'var(' + v + ')'; mix.append(i); });
+      const ml = bel('div','mixl'); [3,4,5].forEach(pp => ml.append(bel('span','', c.par.filter(x => x === pp).length + '× Par ' + pp)));
+      d.append(mix, ml); o.append(d);
+    });
+    o.scrollLeft = keepX;
+    const c = COURSES[cur], p = $('#detail'); p.innerHTML = '';
+    p.append(bel('h3','',c.name), bel('p','char',c.char));
+    const len = c[tee], mx = Math.max(...len), mi = len.indexOf(mx), fa = bel('div','facts');
+    const teeName = {G:'Gelb',W:'Weiß',B:'Blau',R:'Rot'}[tee];
+    [['Par', String(sum(c.par)), '9 Loch'], ['Länge', f(sum(len)) + ' m', 'Abschlag ' + teeName], ['Ø je Loch', f(Math.round(sum(len)/9)) + ' m', ''], ['Längstes Loch', f(mx) + ' m', 'Loch ' + (mi+1) + ' · Par ' + c.par[mi]]]
+      .forEach(([k,v,u]) => { const x = bel('div','f'); x.append(bel('div','k',k), bel('div','v num',v), bel('div','u',u)); fa.append(x); });
+    p.append(fa);
+    const chd = bel('div','chart'); p.append(chd);
+    const W = Math.max(300, chd.clientWidth || p.clientWidth || 900), H = 230, m = {t:22, b:44}, max = Math.max(...Object.values(COURSES).flatMap(k => k.W)), bw = W/9, NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS,'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role','img'); svg.setAttribute('aria-label','Länge je Loch ' + c.name);
+    const mk = (tg,a) => { const e = document.createElementNS(NS,tg); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    len.forEach((v,i) => { const h = (H - m.t - m.b) * v / max, x = i*bw + bw*.18, w = bw*.64, y = H - m.b - h;
+      svg.append(mk('rect', {x, y, width:w, height:h, rx:Math.min(8, w/2), fill:'var(--p' + c.par[i] + ')'}));
+      [[v, y-6, 12, 600, 'var(--fg)'], [i+1, H-m.b+18, 13, 600, 'var(--fg)'], ['Par ' + c.par[i], H-m.b+34, 11, 400, 'var(--fg3)']].forEach(([tx,yy,fs,fw,fill]) => { const e = mk('text', {x:x+w/2, y:yy, 'text-anchor':'middle', 'font-size':fs, 'font-weight':fw, fill}); e.textContent = tx; svg.append(e); }); });
+    svg.append(mk('line', {x1:0, x2:W, y1:H-m.b, y2:H-m.b, stroke:'var(--bline)'})); chd.append(svg);
+    const lg = bel('div','blegend'); [[3,'--p3'],[4,'--p4'],[5,'--p5']].forEach(([pp,v]) => { const s = bel('span'), i = bel('i'); i.style.background = 'var(' + v + ')'; s.append(i, document.createTextNode('Par ' + pp)); lg.append(s); }); lg.append(bel('span','','Länge in Metern')); p.append(lg);
+    const sc = bel('div'); sc.style.overflowX = 'auto'; const tb = bel('table','hp num');
+    const r0 = bel('tr'); r0.append(bel('th','','Loch')); for (let i = 1; i <= 9; i++) r0.append(bel('td','',String(i))); tb.append(r0);
+    const rp = bel('tr'); rp.append(bel('th','','Par')); c.par.forEach(v => rp.append(bel('td','',String(v)))); tb.append(rp);
+    hpFor(cur).forEach(([lab,hp]) => { const tr = bel('tr'); tr.append(bel('th','',lab)); hp.forEach(v => tr.append(bel('td','',String(v)))); tb.append(tr); });
+    sc.append(tb); p.append(sc);
+    const cb = $('#combos'); cb.innerHTML = '';
+    const h = bel('tr'); ['Kombination','Par','Gelb','Weiß','Blau','Rot'].forEach(x => h.append(bel('th','',x))); cb.append(h);
+    Object.entries(COMBOS).forEach(([k,cmb]) => { const A = COURSES[cmb.a], B = COURSES[cmb.b]; const tr = bel('tr'); const td = bel('td'); td.append(bel('b','',cmb.name));
+      ROUND_COMBO.forEach((rk,i) => { if (rk === k) td.append(bel('span','rtag','R' + (i+1))); }); tr.append(td);
+      tr.append(bel('td','',String(sum(A.par) + sum(B.par))));
+      ['G','W','B','R'].forEach(tk => { const x = bel('td','',f(sum(A[tk]) + sum(B[tk]))); if (tk === tee) x.style.fontWeight = '700'; tr.append(x); }); cb.append(tr); });
+  }
+  window.acRenderCourses = render;
+  render();
+  const o = $('#overview'); let st;
+  o.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(() => { if (!isSwipe()) return; const mid = o.scrollLeft + o.clientWidth/2; let best = null, bd = 1e9;
+    o.querySelectorAll('.cc').forEach(c => { const mm = c.offsetLeft + c.offsetWidth/2, dd = Math.abs(mm - mid); if (dd < bd) { bd = dd; best = c; } });
+    if (best && best.dataset.id !== cur) { cur = best.dataset.id; render(); } }, 120); }, {passive:true});
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 150); });
+}
+
+function renderGallery() {
+  const bel = (tg, c, x) => { const e = document.createElement(tg); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  const G = [['galerie-1','Abschlag Gelb','b'],['galerie-2','Bunker vor dem Grün'],['galerie-3','Fahne zwischen Palmen'],['galerie-6','Das 19. Loch','t'],['galerie-4','Auf dem Grün'],['galerie-5','Golf Djerba Club'],
+    ['galerie-10','Kamel am Strand','w'],['galerie-13','Clubhaus','b'],['galerie-7','Unterwegs im Cart','w'],['galerie-14','Kunstrasen-Putting','t'],['galerie-8','Bunker vor Schilf und Meer'],['galerie-9','Grün mit Fahne'],
+    ['galerie-11','Weg zu Tee 1 Les Acacias'],['galerie-12','Lochplan Les Acacias'],['galerie-15','Übungsgrün'],['galerie-16','Blick über die Driving Range'],['galerie-17','Driving Range','w']];
+  const g = $('#gal'), lb = document.createElement('dialog'); lb.id = 'lb';
+  const li = bel('img'), lp = bel('p'), pv = bel('button','lbn prev','‹'), nx = bel('button','lbn next','›'), cl = bel('button','lbx','×');
+  pv.setAttribute('aria-label','Vorheriges Bild'); nx.setAttribute('aria-label','Nächstes Bild'); cl.setAttribute('aria-label','Schließen');
+  lb.append(li, lp, pv, nx, cl); document.body.append(lb); let at = 0;
+  const show = i => { at = (i + G.length) % G.length; const [s,c] = G[at]; li.src = GAL_BASE + s + '.webp'; li.alt = c; lp.textContent = c + ' · ' + (at+1) + ' / ' + G.length; };
+  pv.onclick = e => { e.stopPropagation(); show(at-1); }; nx.onclick = e => { e.stopPropagation(); show(at+1); }; li.onclick = e => { e.stopPropagation(); show(at+1); }; cl.onclick = () => lb.close();
+  lb.addEventListener('click', () => lb.close());
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(at+1); if (e.key === 'ArrowLeft') show(at-1); });
+  let sx = null; lb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true}); lb.addEventListener('touchend', e => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1)); sx = null; }, {passive:true});
+  G.forEach(([s,c,k],n) => { const fg = bel('figure', k || ''), i = bel('img'); i.src = GAL_BASE + s + '-s.webp'; i.alt = c; i.loading = 'lazy'; i.decoding = 'async'; fg.append(i, bel('figcaption','',c));
+    fg.onclick = () => { show(n); if (lb.showModal) lb.showModal(); }; g.append(fg); });
+  $('#gal-n').textContent = G.length + ' Bilder vom Djerba Golf Club.';
 }
 
 /* ---------- Statistik ---------- */
@@ -652,15 +754,17 @@ function renderStats() {
   const tiles = $('#st-tiles'); tiles.innerHTML = '';
   $('#st-sub').textContent = all.length ? all.length + ' Scorekarten ausgewertet' : 'Füllt sich ab der ersten Runde am ' + tag(DAYS[0]);
   const tile = (k, v, w) => tiles.append(el('div', {class:'tile'}, [el('span', {text:k}), el('b', {class:'num', text:v}), el('em', {text:w})]));
-  if (!all.length) { tile('Beste Runde brutto','–','offen'); tile('Beste Runde netto','–','offen'); tile('Meiste Birdies','–','offen'); tile('Wenigste Putts Ø','–','offen'); }
+  if (!all.length) { tile('Beste Runde brutto','–','offen'); tile('Beste Runde netto','–','offen'); tile('Meiste Birdies','–','offen'); tile('Meiste Pars','–','offen'); tile('Wenigste Putts Ø','–','offen'); }
   else {
     const bb = all.reduce((a,b) => b.x.strokes < a.x.strokes ? b : a);
     const nn = all.filter(a => a.x.hasNet); const bn = nn.length ? nn.reduce((a,b) => b.x.net < a.x.net ? b : a) : null;
     const bir = rows.map(r => ({p:r.p, n:r.rs.reduce((a,x)=>a+x.birdies,0)})).sort((a,b)=>b.n-a.n)[0];
+    const pa = rows.map(r => ({p:r.p, n:r.rs.reduce((a,x)=>a+x.pars,0)})).sort((a,b)=>b.n-a.n)[0];
     const pu = rows.filter(r => r.rs.length).map(r => ({p:r.p, v:r.rs.reduce((a,x)=>a+x.putts,0)/r.rs.length})).sort((a,b)=>a.v-b.v)[0];
     tile('Beste Runde brutto', String(bb.x.strokes), name(bb.p) + ' · ' + fmtPar(bb.x.toPar));
     tile('Beste Runde netto', bn ? String(bn.x.net) : '–', bn ? name(bn.p) : 'Vorgaben fehlen');
     tile('Meiste Birdies', String(bir.n), name(bir.p));
+    tile('Meiste Pars', String(pa.n), name(pa.p));
     tile('Wenigste Putts Ø', de1(pu.v), name(pu.p));
   }
   const b = $('#st-body'); b.innerHTML = '';
@@ -673,10 +777,11 @@ function renderStats() {
 }
 
 /* ---------- Reiter ---------- */
-const TABS = ['leaderboard','startzeiten','spieler','platz','statistik'];
+const TABS = ['leaderboard','startzeiten','spieler','platz','statistik','galerie'];
 function show(t) {
   if (!TABS.includes(t)) t = 'leaderboard';
   TABS.forEach(x => { $('#' + x).hidden = x !== t; $('#t-' + x).setAttribute('aria-selected', String(x === t)); });
+  if (t === 'platz' && window.acRenderCourses) window.acRenderCourses();
   try { history.replaceState(null, '', '#' + t); } catch (e) {}
 }
 TABS.forEach(t => $('#t-' + t).addEventListener('click', () => show(t)));
@@ -685,13 +790,13 @@ $('#m-brutto').addEventListener('click', () => { mode = 'brutto'; $('#m-brutto')
 
 window.addEventListener('resize', () => { if (openRow) renderLB(); });
 function renderAll() { renderStatus(); renderLB(); renderDays(); renderPlayers(); renderStats(); }
-renderHoles(); renderAll(); show(location.hash.slice(1));
+renderHoles(); renderGallery(); renderAll(); show(location.hash.slice(1));
 setInterval(renderStatus, 1000);
 
 /* ---------- Daten (data.json im Repo) ---------- */
 fetch('data.json?v=' + Date.now(), {cache:'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
   if (!d) return;
-  if (d.vorgaben) state.vorgaben = Object.fromEntries(Object.entries(d.vorgaben).filter(([k,v]) => P[k] && v !== null && Number.isFinite(Number(v))).map(([k,v]) => [k, Number(v)]));
+  if (d.vorgaben) state.vorgaben = Object.fromEntries(Object.entries(d.vorgaben).filter(([k,v]) => P[k] && v !== null && v !== '' && Number.isFinite(Number(v))).map(([k,v]) => [k, Number(v)]));
   if (Array.isArray(d.rounds)) state.rounds = state.rounds.map(r => { const x = d.rounds.find(y => Number(y.runde) === r.runde); return x && x.kombi ? {...r, kombi: String(x.kombi)} : r; });
   if (Array.isArray(d.flights) && d.flights.length) state.flights = d.flights.filter(f => Array.isArray(f.players)).map(f => ({runde:Number(f.runde), flight:Number(f.flight), abschlag:String(f.abschlag), size:Number(f.size), players:f.players.filter(id => P[id])}));
   if (Array.isArray(d.scores)) state.scores = d.scores.filter(x => x && P[x.spieler] && Array.isArray(x.holes)).map(x => ({runde:Number(x.runde), spieler:x.spieler, holes:x.holes}));
