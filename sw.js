@@ -2,7 +2,7 @@
 // Offline: Seite und Daten zuerst aus dem Netz, sonst letzter gespeicherter Stand.
 // Bilder aus dem Speicher, im Hintergrund aktualisiert. Musik wird nicht gespeichert.
 // Push: Benachrichtigungen der Pinnwand.
-const VERSION = '5608d691';
+const VERSION = '1290f9fd';
 const CACHE = 'ac27-' + VERSION;
 const SHELL = ["./", "index.html", "data.json", "manifest.webmanifest", "apple-touch-icon.png", "icon-512.png", "icon-192.png", "favicon-32.png", "hits-cover.jpg", "lageplan.jpg", "img-av_chau.jpg", "img-av_dirk.jpg", "img-av_georg.jpg", "img-av_klemens.jpg", "img-av_markus.jpg", "img-av_maurizio.jpg", "img-av_peter.jpg", "img-av_reinhold.jpg", "img-av_volker.jpg", "img-card_chau.jpg", "img-card_dirk.jpg", "img-card_georg.jpg", "img-card_klemens.jpg", "img-card_markus.jpg", "img-card_maurizio.jpg", "img-card_peter.jpg", "img-card_reinhold.jpg", "img-card_volker.jpg", "img-hero.jpg", "platz-acacias.jpg", "platz-lamer.jpg", "platz-palmiers.jpg", "galerie-1-s.webp", "galerie-10-s.webp", "galerie-11-s.webp", "galerie-12-s.webp", "galerie-13-s.webp", "galerie-14-s.webp", "galerie-15-s.webp", "galerie-16-s.webp", "galerie-17-s.webp", "galerie-2-s.webp", "galerie-3-s.webp", "galerie-4-s.webp", "galerie-5-s.webp", "galerie-6-s.webp", "galerie-7-s.webp", "galerie-8-s.webp", "galerie-9-s.webp"];
 

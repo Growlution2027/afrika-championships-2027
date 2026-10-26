@@ -1231,7 +1231,19 @@ function pwRender() {
   root.append(ul);
 }
 async function pwInit() {
-  if ('serviceWorker' in navigator) { try { await navigator.serviceWorker.register('sw.js'); } catch (e) {} }
+  if ('serviceWorker' in navigator) {
+    const hadCtl = !!navigator.serviceWorker.controller; let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadCtl || reloaded || pwIsOpen()) return;           // neue Version: einmal neu laden, nie mitten im Schreiben
+      reloaded = true; location.reload();
+    });
+    try {
+      const reg = await navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });
+      const check = () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); };
+      document.addEventListener('visibilitychange', check);
+      setInterval(check, 5 * 60 * 1000);
+    } catch (e) {}
+  }
   if (pushOK) pw.sub = pw.who ? await pwSubState() : null;
   pwRender(); pwLoad();
   const tick = () => { if (document.visibilityState === 'visible') pwLoad(); };
