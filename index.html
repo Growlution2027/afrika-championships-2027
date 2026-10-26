@@ -368,6 +368,44 @@ section[role="tabpanel"]{gap:28px}
 .trk.on .no,.trk.on .ti{color:var(--blue)}
 .trk.on .bar{display:block}
 @media (max-width:760px){.album{grid-template-columns:1fr;gap:20px}.album-cover{max-width:320px;margin:0 auto}}
+
+/* ---------- Pinnwand ---------- */
+.tab .bdg{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;margin-left:6px;border-radius:999px;background:var(--under);color:#fff;font-size:11px;font-weight:700;letter-spacing:0;vertical-align:2px}
+.pw{padding:16px;display:grid;gap:16px}
+.pw p{margin:0}
+.pw .lead{color:var(--muted);font-size:15px;max-width:560px;line-height:1.45}
+.pw form{display:grid;gap:10px}
+.pw-login{max-width:420px}
+.pw label{font-size:13px;color:var(--muted);font-weight:600}
+.pw input,.pw select,.pw textarea{font:inherit;font-size:16px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--fg);width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none}
+.pw select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+.pw textarea{min-height:92px;resize:vertical;line-height:1.45}
+.pw input:focus,.pw select:focus,.pw textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
+.pw .btn{justify-self:start;border:0;background:var(--fg);color:var(--bg);font:inherit;font-weight:600;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer}
+.pw .btn[disabled]{opacity:.45;cursor:default}
+.pw .btn.sec{background:none;color:var(--blue);padding:6px 2px}
+.pw .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pw .cnt{color:var(--muted);font-size:13px;margin-left:auto}
+.pw-me{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+.pw-me b{color:var(--fg);font-weight:600}
+.pw-me .btn.sec{margin-left:auto}
+.pw-push{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:var(--surface-2);font-size:14px;line-height:1.45}
+.pw-push .ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--blue);color:#fff;font-size:15px}
+.pw-push .tx{flex:1 1 220px}
+.pw-push.on .ic{background:var(--up)}
+.pw-err{color:var(--under);font-size:14px;min-height:1em}
+.pw-list{list-style:none;margin:0;padding:0}
+.pw-item{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.pw-item .av{width:40px;height:40px}
+.pw-c{flex:1;min-width:0}
+.pw-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.pw-h b{font-weight:600}
+.pw-h time{color:var(--muted);font-size:13px}
+.pw-b{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:3px;line-height:1.45;font-size:16px}
+.pw-b a{color:var(--blue)}
+.pw-del{margin-left:auto;background:none;border:0;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;padding:0}
+.pw-del.arm{color:var(--under);font-weight:600}
+.pw-item.new .pw-h b::after{content:"neu";margin-left:8px;font-size:11px;font-weight:700;color:var(--under);text-transform:uppercase;letter-spacing:.06em}
 </style>
 
 </head>
@@ -377,6 +415,7 @@ section[role="tabpanel"]{gap:28px}
     <div class="brand"><b>Afrika Championships</b></div>
     <nav class="tabs" role="tablist" aria-label="Bereiche">
       <button class="tab" role="tab" id="t-leaderboard" aria-controls="leaderboard" aria-selected="true">Leaderboard</button>
+      <button class="tab" role="tab" id="t-pinnwand" aria-controls="pinnwand" aria-selected="false">Pinnwand<span class="bdg" id="pw-badge" hidden></span></button>
       <button class="tab" role="tab" id="t-startzeiten" aria-controls="startzeiten" aria-selected="false">Startzeiten</button>
       <button class="tab" role="tab" id="t-spieler" aria-controls="spieler" aria-selected="false">Spieler</button>
       <button class="tab" role="tab" id="t-platz" aria-controls="platz" aria-selected="false">Platz</button>
@@ -426,6 +465,14 @@ section[role="tabpanel"]{gap:28px}
       </div>
       <p class="note" id="stand" style="padding-bottom:0"></p>
       <p class="note">Zeile antippen öffnet die Scorekarte, Foto antippen das Spielerprofil. Netto: Die Spielvorgabe wird nach der Lochvorgabe auf die Löcher verteilt. Gesamt und Heute in Relation zu Par; Rot = unter Par.</p>
+    </div>
+  </section>
+
+  <!-- PINNWAND -->
+  <section role="tabpanel" id="pinnwand" aria-labelledby="t-pinnwand" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>Pinnwand.</h2><span class="sub">Mitteilungen an alle 14 Teilnehmer</span></div>
+      <div class="pw" id="pw"></div>
     </div>
   </section>
 
@@ -920,11 +967,197 @@ function renderStats() {
 }
 
 /* ---------- Reiter ---------- */
-const TABS = ['leaderboard','startzeiten','spieler','platz','statistik','galerie','hits'];
+const TABS = ['leaderboard','pinnwand','startzeiten','spieler','platz','statistik','galerie','hits'];
+
+/* ---------- Pinnwand ---------- */
+const SB_URL = 'https://kjxffqmyxdgczlyktbjj.supabase.co';
+const SB_KEY = 'sb_publishable_KNeoTg8iDPLCTXSHPObmbA_YJxSC4xN';
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
+};
+const pw = { who: store.get('pw_who'), pin: store.get('pw_pin'), msgs: [], loaded: false, err: '', sub: null, timer: null };
+if (pw.who && !P[pw.who]) { pw.who = null; pw.pin = null; }
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isStandalone = () => (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+const pushOK = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+
+async function rpc(fn, args) {
+  const r = await fetch(SB_URL + '/rest/v1/rpc/' + fn, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SB_KEY }, body: JSON.stringify(args || {}) });
+  const txt = await r.text(); let d = null; try { d = txt ? JSON.parse(txt) : null; } catch (e) { d = null; }
+  if (!r.ok) { const e = new Error((d && d.message) || ('Fehler ' + r.status)); e.status = r.status; throw e; }
+  return d;
+}
+const auth = () => ({ p_pin: pw.pin, p_author: pw.who });
+const fmtWhen = iso => {
+  const d = new Date(iso), now = new Date(), min = (now - d) / 60000;
+  const hm = d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  if (min < 1) return 'gerade eben';
+  if (min < 60) return 'vor ' + Math.floor(min) + ' Min.';
+  if (d.toDateString() === now.toDateString()) return 'heute, ' + hm + ' Uhr';
+  const y = new Date(now); y.setDate(now.getDate() - 1);
+  if (d.toDateString() === y.toDateString()) return 'gestern, ' + hm + ' Uhr';
+  return d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' }) + ' ' + hm + ' Uhr';
+};
+function linkify(node, text) {
+  const re = /https?:\/\/[^\s<]+[^\s<.,;:!?)\]"']/g; let last = 0, m;
+  while ((m = re.exec(text))) { node.append(text.slice(last, m.index)); node.append(el('a', { href: m[0], target: '_blank', rel: 'noopener', text: m[0] })); last = m.index + m[0].length; }
+  node.append(text.slice(last));
+  return node;
+}
+const lastSeen = () => Number(store.get('pw_seen') || 0);
+function pwBadge() {
+  const b = $('#pw-badge'); if (!b) return;
+  const n = pw.who ? pw.msgs.filter(m => m.id > lastSeen() && m.author !== pw.who).length : 0;
+  b.hidden = !n; b.textContent = n > 9 ? '9+' : String(n);
+}
+function pwSeen() {
+  if (!pw.msgs.length) return;
+  setTimeout(() => { store.set('pw_seen', String(Math.max(lastSeen(), pw.msgs[0].id))); pwBadge(); }, 1500);
+}
+async function pwLoad() {
+  if (!pw.who || !pw.pin) return;
+  try {
+    pw.msgs = (await rpc('pw_list', auth())) || []; pw.loaded = true;
+  } catch (e) {
+    if (/Nicht angemeldet/.test(e.message)) { pwLogout('Die PIN wurde geändert. Bitte neu anmelden.'); return; }
+    pw.err = e.message;
+  }
+  pwRender(); pwBadge();
+  if (!$('#pinnwand').hidden) pwSeen();
+}
+async function pwSubState() {
+  if (!pushOK) return null;
+  try { const reg = await navigator.serviceWorker.getRegistration(); return reg ? await reg.pushManager.getSubscription() : null; } catch (e) { return null; }
+}
+const b64u = s => { const p = '='.repeat((4 - s.length % 4) % 4), b = atob((s + p).replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from(b, c => c.charCodeAt(0)); };
+async function pwPushOn() {
+  pw.err = '';
+  try {
+    const reg = await navigator.serviceWorker.register('sw.js');
+    await navigator.serviceWorker.ready;
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') { pw.err = 'Benachrichtigungen wurden nicht erlaubt.'; pwRender(); return; }
+    const key = await rpc('pw_vapid');
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64u(key) });
+    const j = sub.toJSON();
+    await rpc('pw_sub', { ...auth(), p_endpoint: j.endpoint, p_p256dh: j.keys.p256dh, p_auth: j.keys.auth });
+    pw.sub = sub;
+  } catch (e) { pw.err = 'Benachrichtigungen konnten nicht eingeschaltet werden. ' + (e.message || ''); }
+  pwRender();
+}
+async function pwPushOff() {
+  const sub = await pwSubState();
+  if (sub) { try { await rpc('pw_unsub', { p_endpoint: sub.endpoint }); } catch (e) {} try { await sub.unsubscribe(); } catch (e) {} }
+  pw.sub = null; pwRender();
+}
+async function pwLogout(msg) {
+  await pwPushOff();
+  pw.who = pw.pin = null; pw.msgs = []; pw.loaded = false; pw.err = msg || '';
+  store.set('pw_who', null); store.set('pw_pin', null);
+  pwRender(); pwBadge();
+}
+function pwPushBox() {
+  const box = el('div', { class: 'pw-push' + (pw.sub ? ' on' : '') });
+  const tx = el('div', { class: 'tx' });
+  box.append(el('div', { class: 'ic', 'aria-hidden': 'true', text: pw.sub ? '✓' : '🔔' }), tx);
+  if (pw.sub) {
+    tx.append(el('b', { text: 'Benachrichtigungen sind an. ' }), 'Neue Mitteilungen kommen auf dieses Gerät.');
+    const off = el('button', { type: 'button', class: 'btn sec', text: 'Ausschalten' }); off.addEventListener('click', pwPushOff); box.append(off);
+  } else if (isIOS && !isStandalone()) {
+    tx.append(el('b', { text: 'Benachrichtigungen auf dem iPhone: ' }), 'In Safari unten auf das Teilen-Symbol tippen, „Zum Home-Bildschirm“ wählen, die Seite dann über das Icon „Afrika 27“ öffnen und hier einschalten.');
+  } else if (!pushOK) {
+    tx.append('Dieser Browser kann keine Benachrichtigungen empfangen. Die Mitteilungen siehst du trotzdem hier.');
+  } else if (Notification.permission === 'denied') {
+    tx.append(el('b', { text: 'Benachrichtigungen sind blockiert. ' }), 'Bitte in den Einstellungen für diese Seite wieder erlauben.');
+  } else {
+    tx.append(el('b', { text: 'Bei neuen Mitteilungen benachrichtigt werden. ' }), 'Einmal einschalten, dann meldet sich das Handy.');
+    const on = el('button', { type: 'button', class: 'btn', text: 'Einschalten' }); on.addEventListener('click', pwPushOn); box.append(on);
+  }
+  return box;
+}
+function pwRender() {
+  const root = $('#pw'); if (!root) return;
+  root.replaceChildren();
+  if (!pw.who || !pw.pin) {
+    root.append(el('p', { class: 'lead', text: 'Hier teilen wir Mitteilungen mit der ganzen Gruppe: Treffpunkte, geänderte Startzeiten, Links zu Fotos, alles rund um die Reise. Einmal mit Namen und Gruppen-PIN anmelden, dann siehst du alles und kannst selbst schreiben.' }));
+    const f = el('form', { class: 'pw-login', autocomplete: 'off' });
+    const sel = el('select', { id: 'pw-who', required: 'required' }, [el('option', { value: '', text: 'Bitte wählen' })]);
+    [...PLAYERS].sort((a, b) => a.ln.localeCompare(b.ln, 'de')).forEach(p => sel.append(el('option', { value: p.id, text: name(p) })));
+    const pin = el('input', { id: 'pw-pin', type: 'password', inputmode: 'text', autocomplete: 'off', required: 'required', placeholder: 'Gruppen-PIN' });
+    const err = el('div', { class: 'pw-err', role: 'alert', text: pw.err });
+    const btn = el('button', { type: 'submit', class: 'btn', text: 'Anmelden' });
+    f.append(el('label', { for: 'pw-who', text: 'Wer bist du?' }), sel, el('label', { for: 'pw-pin', text: 'Gruppen-PIN' }), pin, err, btn);
+    f.addEventListener('submit', async ev => {
+      ev.preventDefault(); if (!sel.value || !pin.value) return;
+      btn.disabled = true; err.textContent = '';
+      try {
+        const ok = await rpc('pw_login', { p_pin: pin.value, p_author: sel.value });
+        if (!ok) { err.textContent = 'Name oder PIN stimmt nicht.'; btn.disabled = false; return; }
+        pw.who = sel.value; pw.pin = pin.value; pw.err = '';
+        store.set('pw_who', pw.who); store.set('pw_pin', pw.pin);
+        const sub = await pwSubState();
+        if (sub) { const j = sub.toJSON(); try { await rpc('pw_sub', { ...auth(), p_endpoint: j.endpoint, p_p256dh: j.keys.p256dh, p_auth: j.keys.auth }); pw.sub = sub; } catch (e) {} }
+        pwRender(); pwLoad();
+      } catch (e2) { err.textContent = e2.message; btn.disabled = false; }
+    });
+    root.append(f);
+    return;
+  }
+  const me = P[pw.who];
+  const out = el('button', { type: 'button', class: 'btn sec', text: 'Abmelden' }); out.addEventListener('click', () => pwLogout());
+  const av = avatar(me); av.style.width = av.style.height = '30px';
+  root.append(el('div', { class: 'pw-me' }, [av, el('span', {}, ['Angemeldet als ', el('b', { text: name(me) })]), out]));
+  root.append(pwPushBox());
+  const f = el('form', {});
+  const ta = el('textarea', { id: 'pw-text', maxlength: '1000', placeholder: 'Mitteilung an alle …', 'aria-label': 'Neue Mitteilung' });
+  const cnt = el('span', { class: 'cnt', text: '' });
+  const send = el('button', { type: 'submit', class: 'btn', text: 'Senden', disabled: 'disabled' });
+  const err = el('div', { class: 'pw-err', role: 'alert', text: pw.err });
+  ta.addEventListener('input', () => { const n = ta.value.trim().length; send.disabled = !n; cnt.textContent = ta.value.length > 800 ? (1000 - ta.value.length) + ' Zeichen frei' : ''; });
+  f.append(ta, el('div', { class: 'row' }, [send, cnt]), err);
+  f.addEventListener('submit', async ev => {
+    ev.preventDefault(); const body = ta.value.trim(); if (!body) return;
+    send.disabled = true; err.textContent = '';
+    try { await rpc('pw_post', { ...auth(), p_body: body }); ta.value = ''; pw.err = ''; await pwLoad(); }
+    catch (e) { err.textContent = e.message; send.disabled = false; }
+  });
+  root.append(f);
+  if (!pw.loaded) { root.append(el('div', { class: 'empty', text: 'Mitteilungen werden geladen …' })); return; }
+  if (!pw.msgs.length) { root.append(el('div', { class: 'empty', text: 'Noch keine Mitteilungen. Schreib die erste.' })); return; }
+  const seen = lastSeen();
+  const ul = el('ul', { class: 'pw-list' });
+  pw.msgs.forEach(m => {
+    const p = P[m.author]; if (!p) return;
+    const head = el('div', { class: 'pw-h' }, [el('b', { text: name(p) }), el('time', { datetime: m.created_at, text: fmtWhen(m.created_at) })]);
+    if (m.author === pw.who) {
+      const del = el('button', { type: 'button', class: 'pw-del', text: 'Löschen' }); let armed = null;
+      del.addEventListener('click', async () => {
+        if (!armed) { del.textContent = 'Wirklich löschen?'; del.classList.add('arm'); armed = setTimeout(() => { armed = null; del.textContent = 'Löschen'; del.classList.remove('arm'); }, 4000); return; }
+        clearTimeout(armed); del.disabled = true;
+        try { await rpc('pw_delete', { ...auth(), p_id: m.id }); await pwLoad(); } catch (e) { pw.err = e.message; pwRender(); }
+      });
+      head.append(del);
+    }
+    ul.append(el('li', { class: 'pw-item' + (m.id > seen && m.author !== pw.who ? ' new' : '') }, [avatar(p), el('div', { class: 'pw-c' }, [head, linkify(el('div', { class: 'pw-b' }), m.body)])]));
+  });
+  root.append(ul);
+}
+async function pwInit() {
+  if (pushOK) { try { await navigator.serviceWorker.register('sw.js'); } catch (e) {} pw.sub = pw.who ? await pwSubState() : null; }
+  pwRender(); pwLoad();
+  const tick = () => { if (document.visibilityState === 'visible') pwLoad(); };
+  pw.timer = setInterval(tick, 30000);
+  document.addEventListener('visibilitychange', tick);
+  if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', ev => { if (!ev.data) return; if (ev.data.type === 'pw') { pwLoad(); show('pinnwand'); } else if (ev.data.type === 'pw-new') pwLoad(); });
+}
+
 function show(t) {
   if (!TABS.includes(t)) t = 'leaderboard';
   TABS.forEach(x => { $('#' + x).hidden = x !== t; $('#t-' + x).setAttribute('aria-selected', String(x === t)); });
   if (t === 'platz' && window.acRenderCourses) window.acRenderCourses();
+  if (t === 'pinnwand') pwSeen();
   try { history.replaceState(null, '', '#' + t); } catch (e) {}
 }
 TABS.forEach(t => $('#t-' + t).addEventListener('click', () => { show(t); const m = document.querySelector('main'); const y = m.getBoundingClientRect().top + window.scrollY - document.querySelector('.top').offsetHeight - 8; if (window.scrollY < y) window.scrollTo({top: y, behavior: 'smooth'}); }));
@@ -933,7 +1166,7 @@ $('#m-brutto').addEventListener('click', () => { mode = 'brutto'; $('#m-brutto')
 
 window.addEventListener('resize', () => { if (openRow) renderLB(); });
 function renderAll() { renderStatus(); renderLB(); renderDays(); renderPlayers(); renderStats(); }
-renderHoles(); renderGallery(); renderHits(); renderAll(); show(location.hash.slice(1));
+renderHoles(); renderGallery(); renderHits(); renderAll(); pwInit(); show(location.hash.slice(1));
 setInterval(renderStatus, 1000);
 
 /* ---------- Daten (data.json im Repo) ---------- */
