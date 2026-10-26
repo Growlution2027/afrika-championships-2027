@@ -453,6 +453,19 @@ section[role="tabpanel"]{gap:28px}
 @media (min-width:701px){.offl{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:41}}
 .offl span{display:inline-block;background:var(--fg);color:var(--bg);font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.2);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.more-ov,.more{transition:none}}
+
+/* Legende in der Scorekarte */
+.sc-legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 18px;margin:14px 4px 4px;font-size:13px;color:var(--muted)}
+.sc-legend>span{display:flex;align-items:center;gap:12px;min-height:30px}
+.sc-legend .mk{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;margin:4px;font-size:12px;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+.sc-legend .mk.eagle,.sc-legend .mk.birdie{color:var(--under)}
+
+/* Scorekarte: Doppelringe bleiben in der Zelle */
+.sc .mk{width:22px;height:22px}
+.mk.eagle{box-shadow:0 0 0 1.5px var(--under),0 0 0 3px var(--surface),0 0 0 4.5px var(--under)}
+.mk.double{box-shadow:0 0 0 1.5px var(--fg),0 0 0 3px var(--surface),0 0 0 4.5px var(--fg)}
+.sc-legend .mk.eagle,.sc-legend .mk.double{box-shadow:0 0 0 1.5px currentColor,0 0 0 3px var(--surface),0 0 0 4.5px currentColor}
+.sc-legend .mk.double{color:var(--fg)}
 </style>
 
 </head>
@@ -506,9 +519,6 @@ section[role="tabpanel"]{gap:28px}
           </tr></thead>
           <tbody id="lb-body"></tbody>
         </table>
-      </div>
-      <div class="legend" aria-label="Legende Scorekarte">
-        <span><span class="mk eagle">3</span>Eagle oder besser</span><span><span class="mk birdie">3</span>Birdie</span><span><span class="mk">4</span>Par</span><span><span class="mk bogey">5</span>Bogey</span><span><span class="mk double">6</span>Doppelbogey +</span>
       </div>
       <p class="note" id="stand" style="padding-bottom:0"></p>
       <p class="note">Zeile antippen öffnet die Scorekarte, Foto antippen das Spielerprofil. Netto: Die Spielvorgabe wird nach der Lochvorgabe auf die Löcher verteilt. Gesamt und Heute in Relation zu Par; Rot = unter Par.</p>
@@ -796,6 +806,10 @@ function scorecard(pid) {
     wrap.append(el('div', {class:'sc-scroll'}, t));
     box.append(wrap);
   });
+  const lg = el('div', {class:'sc-legend', 'aria-label':'Zeichen auf der Scorekarte'});
+  [['eagle','3','Eagle oder besser'],['birdie','3','Birdie'],['','4','Par'],['bogey','5','Bogey'],['double','6','Doppelbogey +']]
+    .forEach(([c,n,l]) => lg.append(el('span', {}, [el('span', {class:'mk ' + c, text:n}), el('span', {text:l})])));
+  box.append(lg);
   return box;
 }
 function partners(pid, r) { const f = state.flights.find(f => f.runde === r && f.players.includes(pid)); return f ? f.players.filter(x => x !== pid).map(x => P[x].fn).join(', ').replace(/, ([^,]*)$/, ' und $1') : '–'; }
