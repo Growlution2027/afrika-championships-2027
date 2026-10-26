@@ -17,33 +17,20 @@
 <link rel="manifest" href="manifest.webmanifest">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Afrika Championships 2027</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
 <style>
 /* Layout: sticky Kopfzeile mit Reitern, darunter eine Spalte (max 1100px); Leaderboard als zentrale Tabelle, Karten nur für Flights, Bahnen, Spielerprofil */
 :root{
-  --bg:#f4f6f7; --surface:#ffffff; --surface-2:#eaeef1; --line:#d6dde2;
-  --fg:#14202b; --muted:#5d6b77;
-  --blue:#1b5fae;           /* Djerba-Blau der Türen und Fensterläden */
-  --blue-ink:#ffffff;
-  --sand:#c9a46a;
-  --under:#c8102e;          /* unter Par: Rot, wie auf jedem Turnierboard */
-  --over:#14202b;
-  --even:#5d6b77;
-  --up:#1f8a4c; --down:#c8102e;
-  --hl:#fff6d6;
-  --font-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
-  --font-body:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --r:10px;
+  --bg:#ffffff; --surface:#f5f5f7; --surface-2:#ffffff; --line:#d2d2d7;
+  --fg:#1d1d1f; --muted:#6e6e73;
+  --blue:#0071e3; --blue-ink:#ffffff; --sand:#c9a46a;
+  --under:#d70015; --over:#1d1d1f; --even:#86868b;
+  --up:#1d9a50; --down:#d70015; --hl:#fff4d6;
+  --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --r:22px;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0d151c; --surface:#142029; --surface-2:#1b2a35; --line:#263744;
-  --fg:#e7edf2; --muted:#93a3b0; --blue:#4d93e6; --blue-ink:#0b1219; --sand:#d8b67c;
-  --under:#ff5a6e; --over:#e7edf2; --even:#93a3b0; --up:#45c47e; --down:#ff5a6e; --hl:#2a2614; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0d151c; --surface:#142029; --surface-2:#1b2a35; --line:#263744;
-  --fg:#e7edf2; --muted:#93a3b0; --blue:#4d93e6; --blue-ink:#0b1219; --sand:#d8b67c;
-  --under:#ff5a6e; --over:#e7edf2; --even:#93a3b0; --up:#45c47e; --down:#ff5a6e; --hl:#2a2614; color-scheme:dark}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#000000; --surface:#161617; --surface-2:#1d1d1f; --line:#424245; --fg:#f5f5f7; --muted:#a1a1a6; --blue:#2997ff; --blue-ink:#ffffff; --sand:#d8b67c; --under:#ff453a; --over:#f5f5f7; --even:#86868b; --up:#30d158; --down:#ff453a; --hl:#2a2614; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000; --surface:#161617; --surface-2:#1d1d1f; --line:#424245; --fg:#f5f5f7; --muted:#a1a1a6; --blue:#2997ff; --blue-ink:#ffffff; --sand:#d8b67c; --under:#ff453a; --over:#f5f5f7; --even:#86868b; --up:#30d158; --down:#ff453a; --hl:#2a2614; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
@@ -280,13 +267,94 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
   .bdx .hp th{width:90px;font-size:11px}.bdx .hp td{font-size:12px}
   .bdx .combo .opt{display:none}.bdx .combo{font-size:13px}.bdx .combo th,.bdx .combo td{padding:11px 4px}.bdx .combo td:first-child b{white-space:normal}
 }
+
+/* ===== Gesamtlook wie Birdie Lindemann Open ===== */
+body{letter-spacing:-.01em;line-height:1.4}
+h1,h2,h3{letter-spacing:-.02em}
+body::before{background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.top{background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.top .wrap{padding-block:0;min-height:48px;gap:22px;flex-wrap:nowrap}
+.brand b{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;text-transform:none;white-space:nowrap}
+.tabs{gap:4px}
+.tab{font-family:var(--font-body);font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted);padding:6px 10px}
+.tab:hover{color:var(--fg)}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+@media (max-width:700px){.top .wrap{flex-wrap:wrap;gap:4px 12px;padding-block:6px}.tabs{margin-left:0;width:100%}.tab{font-size:13px;padding:6px 9px}}
+.hero{border-radius:0;margin-top:0;min-height:440px;height:min(70vh,640px);background-position:center 70%;display:flex;align-items:flex-start;justify-content:center;text-align:center}
+.hero::after{background:linear-gradient(180deg,rgba(10,25,60,.42) 0%,rgba(10,25,60,.12) 45%,rgba(0,0,0,0) 65%)}
+.hero .in{max-width:none;align-items:center;padding:clamp(56px,11vh,120px) 20px 20px;gap:0}
+.hero h1{font-size:clamp(40px,7.4vw,84px);line-height:1.02;font-weight:700;letter-spacing:-.035em;text-transform:none;text-shadow:0 2px 24px rgba(0,0,0,.18)}
+.eyebrow{font-size:clamp(15px,1.9vw,20px);font-weight:600;letter-spacing:0;text-transform:none;opacity:.95;margin-top:12px}
+.hero p{margin:8px 0 0;font-size:clamp(18px,2.6vw,28px);font-weight:500;opacity:.96}
+.status{justify-content:center;margin-top:18px}
+.pill{background:rgba(0,0,0,.32);border:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-weight:600}
+main{padding-block:48px 64px;gap:56px;max-width:1024px}
+section[role="tabpanel"]{gap:28px}
+.panel{background:transparent;border:0;border-radius:0}
+.panel-h{padding:0 0 18px;border-bottom:0;align-items:flex-end}
+.panel-h h2{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.05;text-transform:none;width:100%}
+.panel-h .sub{font-size:clamp(15px,1.8vw,19px);color:var(--muted)}
+.seg{background:#e8e8ed;border-radius:10px;padding:3px;margin-left:0}
+.seg button{font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;border-radius:8px;padding:7px 16px}
+.seg button[aria-pressed="true"]{background:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg{background:#2c2c2e}:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{background:#636366}}
+:root[data-theme="dark"] .seg{background:#2c2c2e}:root[data-theme="dark"] .seg button[aria-pressed="true"]{background:#636366}
+.note{padding:12px 0 0;color:var(--muted)}
+.banner{margin:0 0 12px;border-radius:14px}
+.count{padding:0;gap:12px}
+.count div{background:var(--surface);border-radius:18px;padding:22px 8px}
+.count b{font-family:var(--font-display);font-size:clamp(34px,6vw,56px);letter-spacing:-.03em}
+.count span{text-transform:none;letter-spacing:0;font-size:13px;font-weight:600}
+.lb-scroll{background:var(--surface);border-radius:var(--r);padding:6px 10px}
+.lb th{font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;background:transparent}
+.lb td{border-bottom:1px solid var(--line)}
+.lb tbody tr:last-child td{border-bottom:0}
+.lb tbody tr.row:hover td,.lb tr.open td{background:color-mix(in srgb,var(--fg) 5%,transparent)}
+.pos{font-family:var(--font-display);font-size:17px}
+.who .ln{text-transform:none;letter-spacing:-.01em}
+.av{font-family:var(--font-display);border-color:var(--bg)}
+.topar{font-family:var(--font-display);font-size:20px;letter-spacing:-.02em}
+.legend{padding:12px 4px 0}
+.sc-round h4{font-family:var(--font-body);text-transform:none;letter-spacing:0;font-size:14px}
+.sc th{background:transparent}
+.sc td.tot{background:color-mix(in srgb,var(--fg) 6%,transparent)}
+.days{padding:0 0 4px;gap:8px}
+.day{border:0;background:var(--surface);border-radius:14px;padding:8px 14px}
+.day b{font-family:var(--font-display);font-size:20px;letter-spacing:-.02em}
+.day[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.day[aria-pressed="true"] span{color:var(--bg)}
+.flights{padding:0;gap:12px}
+.fl{border:0;background:var(--surface);border-radius:18px;padding:20px}
+.fl-h b{font-family:var(--font-display);font-size:36px;letter-spacing:-.03em;font-weight:700}
+.fl-h span{text-transform:none;letter-spacing:0;font-size:13px;font-weight:600}
+.fl li.me .nm{color:var(--blue);font-weight:600}
+.grid-p{padding:0;gap:12px}
+.pc{border:0;background:var(--surface);border-radius:18px;padding:20px 12px;transition:transform .25s}
+.pc:hover{transform:scale(1.02)}
+.pc .nm{font-size:16px;letter-spacing:-.01em}
+.tag{text-transform:none;letter-spacing:0;font-weight:600;font-size:12px;background:var(--bg)}
+.tag.b{background:var(--fg);color:var(--bg)}
+.card{border-radius:22px}
+.card h3{font-family:var(--font-display);text-transform:none;font-size:32px;font-weight:700;letter-spacing:-.03em}
+.fact{background:var(--surface);border-radius:14px}
+.fact span{text-transform:none;letter-spacing:0;font-weight:600;font-size:12px}
+.fact b{font-family:var(--font-display);letter-spacing:-.02em}
+.tiles{padding:0 0 16px;gap:12px}
+.tile{background:var(--surface);border-radius:18px;padding:22px}
+.tile span{text-transform:none;letter-spacing:0;font-weight:600;font-size:13px}
+.tile b{font-family:var(--font-display);font-size:clamp(30px,4vw,42px);letter-spacing:-.03em}
+.bdx{background:transparent;border:0;border-radius:0;padding:0}
+.bdx>section{padding-top:0}
+.bdx>section+section{padding-top:56px}
+.bdx{--bbg:var(--bg);--bg2:var(--surface)}
+.bdx .cc,.bdx .bcard{background:var(--surface)}
 </style>
 
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="brand"><b>Afrika Championships</b><span>Djerba · Februar 2027 · Best of 108 Loch</span></div>
+    <div class="brand"><b>Afrika Championships</b></div>
     <nav class="tabs" role="tablist" aria-label="Bereiche">
       <button class="tab" role="tab" id="t-leaderboard" aria-controls="leaderboard" aria-selected="true">Leaderboard</button>
       <button class="tab" role="tab" id="t-startzeiten" aria-controls="startzeiten" aria-selected="false">Startzeiten</button>
@@ -298,27 +366,25 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
   </div>
 </header>
 
-<div class="wrap">
-  <div class="hero" style="background-image:url(img-hero.jpg)">
+<div class="hero" style="background-image:url(img-hero.jpg)">
     <div class="in">
       <h1>Afrika Championships 2027</h1>
       <div class="eyebrow">Djerba Golf Club · 21.–26.02.2027</div>
       <p>108 Löcher. Jeder Putt zählt.</p>
       <div class="status" id="status"></div>
     </div>
-  </div>
 </div>
 
 <main class="wrap">
   <!-- LEADERBOARD -->
   <section role="tabpanel" id="leaderboard" aria-labelledby="t-leaderboard">
     <div class="panel" id="countdown-panel" hidden>
-      <div class="panel-h"><h2>Bis zum ersten Abschlag</h2></div>
+      <div class="panel-h"><h2>Bis zum ersten Abschlag.</h2></div>
       <div class="count" id="count"></div>
     </div>
     <div class="panel">
       <div class="panel-h">
-        <h2>Leaderboard</h2><span class="sub" id="lb-sub"></span>
+        <h2>Leaderboard.</h2><span class="sub" id="lb-sub"></span>
         <div class="seg" role="group" aria-label="Wertung">
           <button type="button" id="m-brutto" aria-pressed="true">Brutto</button>
           <button type="button" id="m-netto" aria-pressed="false">Netto</button>
@@ -345,7 +411,7 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
   <!-- STARTZEITEN -->
   <section role="tabpanel" id="startzeiten" aria-labelledby="t-startzeiten" hidden>
     <div class="panel">
-      <div class="panel-h"><h2>Startzeiten</h2><span class="sub">Ausgelost am 26.10.2026 · erster Abschlag 10:00 Uhr, dann alle 10 Minuten</span></div>
+      <div class="panel-h"><h2>Startzeiten.</h2><span class="sub">Ausgelost am 26.10.2026 · erster Abschlag 10:00 Uhr, dann alle 10 Minuten</span></div>
       <div class="days" id="days" role="group" aria-label="Spieltag"></div>
       <div class="flights" id="flights"></div>
       <p class="note">Täglich vier Flights. Beim Los: niemand spielt öfter als zweimal mit demselben Partner, jeder startet mindestens einmal im ersten Flight.</p>
@@ -355,7 +421,7 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
   <!-- SPIELER -->
   <section role="tabpanel" id="spieler" aria-labelledby="t-spieler" hidden>
     <div class="panel">
-      <div class="panel-h"><h2>Das Feld</h2><span class="sub">14 Spieler · Foto antippen für das Profil</span></div>
+      <div class="panel-h"><h2>Das Feld.</h2><span class="sub">14 Spieler · Foto antippen für das Profil</span></div>
       <div class="grid-p" id="players"></div>
     </div>
   </section>
@@ -398,7 +464,7 @@ table.sc{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13
   <!-- STATISTIK -->
   <section role="tabpanel" id="statistik" aria-labelledby="t-statistik" hidden>
     <div class="panel">
-      <div class="panel-h"><h2>Statistik</h2><span class="sub" id="st-sub"></span></div>
+      <div class="panel-h"><h2>Statistik.</h2><span class="sub" id="st-sub"></span></div>
       <div class="tiles" id="st-tiles"></div>
       <div class="lb-scroll">
         <table class="lb">
@@ -784,7 +850,7 @@ function show(t) {
   if (t === 'platz' && window.acRenderCourses) window.acRenderCourses();
   try { history.replaceState(null, '', '#' + t); } catch (e) {}
 }
-TABS.forEach(t => $('#t-' + t).addEventListener('click', () => show(t)));
+TABS.forEach(t => $('#t-' + t).addEventListener('click', () => { show(t); const m = document.querySelector('main'); const y = m.getBoundingClientRect().top + window.scrollY - document.querySelector('.top').offsetHeight - 8; if (window.scrollY < y) window.scrollTo({top: y, behavior: 'smooth'}); }));
 $('#m-netto').addEventListener('click', () => { mode = 'netto'; $('#m-netto').setAttribute('aria-pressed','true'); $('#m-brutto').setAttribute('aria-pressed','false'); renderLB(); });
 $('#m-brutto').addEventListener('click', () => { mode = 'brutto'; $('#m-brutto').setAttribute('aria-pressed','true'); $('#m-netto').setAttribute('aria-pressed','false'); renderLB(); });
 
