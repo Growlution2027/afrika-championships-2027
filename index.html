@@ -828,7 +828,7 @@ function renderDays() {
   state.flights.filter(f => f.runde === r.runde).sort((a,b) => a.flight - b.flight).forEach(f => {
     const ul = el('ul');
     f.players.forEach(id => { const p = P[id]; ul.append(el('li', {class: id === 'maurizio' ? 'me' : ''}, [avatar(p), el('span', {class:'nm', text: name(p)})])); });
-    fl.append(el('article', {class:'fl'}, [el('div', {class:'fl-h'}, [el('b', {class:'num', text: f.abschlag}), el('span', {text: 'Flight ' + f.flight}), el('em', {text: r.kombi || tag(r.datum)})]), ul]));
+    fl.append(el('article', {class:'fl'}, [el('div', {class:'fl-h'}, [el('b', {class:'num', text: f.abschlag}), el('span', {text: 'Flight ' + f.flight}), el('em', {text: (r.kombi || tag(r.datum)) + ' · Abschlag Blau'})]), ul]));
   });
 }
 
@@ -882,7 +882,7 @@ function renderHoles() {
   const bel = (tg, c, x) => { const e = document.createElement(tg); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
   const sum = a => a.reduce((s,v) => s + v, 0), f = n => n.toLocaleString('de-DE');
   const PHOTO = {P: IMG.platz_P, M: IMG.platz_M, A: IMG.platz_A};
-  let tee = 'G', cur = 'P';
+  let tee = 'B', cur = 'P';
   // Club-Fakten
   const pars = Object.values(COMBOS).map(c => sum(COURSES[c.a].par) + sum(COURSES[c.b].par));
   const longest = Math.max(...Object.values(COMBOS).map(c => sum(COURSES[c.a].W) + sum(COURSES[c.b].W)));
