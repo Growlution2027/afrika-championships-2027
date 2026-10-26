@@ -406,6 +406,53 @@ section[role="tabpanel"]{gap:28px}
 .pw-del{margin-left:auto;background:none;border:0;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;padding:0}
 .pw-del.arm{color:var(--under);font-weight:600}
 .pw-item.new .pw-h b::after{content:"neu";margin-left:8px;font-size:11px;font-weight:700;color:var(--under);text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- iPhone: Tab-Leiste unten, kompakter Titel ---------- */
+.tbar,.more-ov{display:none}
+.offl{display:none}
+@media (max-width:700px){
+  .top .tabs{display:none}
+  .top .wrap{min-height:44px;justify-content:center;flex-wrap:nowrap;padding-block:0}
+  .brand b{font-size:17px}
+  .hero{min-height:0;height:clamp(200px,31vh,250px);background-position:center 62%}
+  .hero .in{padding:30px 20px 18px}
+  .hero h1{font-size:34px}
+  .eyebrow{font-size:15px;margin-top:8px}
+  .hero p{font-size:17px;margin-top:4px}
+  .status{margin-top:12px}
+  .hero::after{background:linear-gradient(180deg,rgba(8,20,45,.62) 0%,rgba(8,20,45,.38) 62%,rgba(0,0,0,.18) 100%)}
+  .hero h1,.eyebrow,.hero p{text-shadow:0 1px 12px rgba(0,0,0,.35)}
+  #countdown-panel .panel-h{padding-bottom:12px}
+  #countdown-panel .panel-h h2{font-size:22px;letter-spacing:-.01em}
+  .count{gap:8px}
+  .count div{padding:12px 4px;border-radius:14px}
+  .count b{font-size:28px}
+  .count span{font-size:12px}
+  main{padding-block:28px calc(110px + env(safe-area-inset-bottom,0px));gap:40px}
+  .tbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid color-mix(in srgb,var(--line) 80%,transparent);padding:0 max(2px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(2px,env(safe-area-inset-left,0px))}
+  .tbar button{flex:1;min-width:0;min-height:52px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:inherit;font-size:10px;font-weight:500;letter-spacing:.01em;color:var(--muted);cursor:pointer;position:relative;padding:7px 0 5px;-webkit-tap-highlight-color:transparent}
+  .tbar button[aria-current="page"]{color:var(--blue)}
+  .tbar svg{width:26px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .tbar button[aria-current="page"] svg{stroke-width:2.1}
+  .tbar .bdg{position:absolute;top:4px;left:calc(50% + 5px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--under);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;box-sizing:border-box}
+  .more-ov{display:block;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .2s}
+  .more-ov.open{opacity:1;pointer-events:auto}
+  .more{position:absolute;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));background:var(--surface-2);border-radius:20px;padding:6px 0;transform:translateY(24px);transition:transform .25s cubic-bezier(.2,.8,.2,1);box-shadow:0 10px 40px rgba(0,0,0,.25)}
+  .more-ov.open .more{transform:none}
+  .more h3{margin:10px 18px 6px;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .more button{display:flex;align-items:center;gap:14px;width:100%;min-height:52px;padding:0 18px;border:0;background:none;font:inherit;font-size:17px;color:var(--fg);cursor:pointer;text-align:left}
+  .more button + button{border-top:.5px solid var(--line)}
+  .more button svg{width:24px;height:24px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .more button .chev{margin-left:auto;color:var(--muted);font-size:20px}
+  .more button[aria-current="page"]{color:var(--blue);font-weight:600}
+  .more .close{justify-content:center;color:var(--blue);font-weight:600;margin-top:6px;border-top:.5px solid var(--line)!important}
+  .seg button{min-height:34px}
+  .offl{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:41}
+}
+.offl.on{display:block}
+@media (min-width:701px){.offl{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:41}}
+.offl span{display:inline-block;background:var(--fg);color:var(--bg);font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.2);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.more-ov,.more{transition:none}}
 </style>
 
 </head>
@@ -560,6 +607,9 @@ section[role="tabpanel"]{gap:28px}
     </div>
   </section>
 </main>
+<nav class="tbar" aria-label="Bereiche"><button type="button" data-t="leaderboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-7M22 20H2"/></svg><span>Leaderboard</span></button><button type="button" data-t="startzeiten"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Startzeiten</span></button><button type="button" data-t="pinnwand"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4v-4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><span>Pinnwand</span><b class="bdg" id="pw-badge-m" hidden></b></button><button type="button" data-t="spieler"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14.5c2.4 0 4 1.5 4.5 4"/></svg><span>Spieler</span></button><button type="button" data-t="mehr"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="7.5" cy="12" r=".6" fill="currentColor"/><circle cx="12" cy="12" r=".6" fill="currentColor"/><circle cx="16.5" cy="12" r=".6" fill="currentColor"/></svg><span>Mehr</span></button></nav>
+<div class="more-ov" id="more-ov" aria-hidden="true"><div class="more" role="dialog" aria-modal="true" aria-label="Weitere Bereiche"><h3>Mehr</h3><button type="button" data-t="platz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V3l11 4.5L6 12"/><path d="M3 21h12"/></svg><span>Platz</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="statistik"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg><span>Statistik</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="galerie"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg><span>Galerie</span><span class="chev" aria-hidden="true">›</span></button><button type="button" data-t="hits"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg><span>Hits</span><span class="chev" aria-hidden="true">›</span></button><button type="button" class="close" data-close>Schließen</button></div></div>
+<div class="offl" id="offl" role="status" aria-live="polite"><span>Offline · letzter gespeicherter Stand</span></div>
 
 <div class="ov" id="ov" hidden role="dialog" aria-modal="true" aria-labelledby="pf-name"></div>
 
@@ -1010,6 +1060,7 @@ function pwBadge() {
   const b = $('#pw-badge'); if (!b) return;
   const n = pw.who ? pw.msgs.filter(m => m.id > lastSeen() && m.author !== pw.who).length : 0;
   b.hidden = !n; b.textContent = n > 9 ? '9+' : String(n);
+  const m = $('#pw-badge-m'); if (m) { m.hidden = !n; m.textContent = b.textContent; }
 }
 function pwSeen() {
   if (!pw.msgs.length) return;
@@ -1018,10 +1069,12 @@ function pwSeen() {
 async function pwLoad() {
   if (!pw.who || !pw.pin) return;
   try {
-    pw.msgs = (await rpc('pw_list', auth())) || []; pw.loaded = true;
+    pw.msgs = (await rpc('pw_list', auth())) || []; pw.loaded = true; pw.offline = false;
+    store.set('pw_cache', JSON.stringify(pw.msgs.slice(0, 100)));
   } catch (e) {
     if (/Nicht angemeldet/.test(e.message)) { pwLogout('Die PIN wurde geändert. Bitte neu anmelden.'); return; }
-    pw.err = e.message;
+    if (e instanceof TypeError) { try { pw.msgs = JSON.parse(store.get('pw_cache') || '[]'); } catch (x) { pw.msgs = []; } pw.loaded = true; pw.offline = true; }
+    else pw.err = e.message;
   }
   pwRender(); pwBadge();
   if (!$('#pinnwand').hidden) pwSeen();
@@ -1054,7 +1107,7 @@ async function pwPushOff() {
 }
 async function pwLogout(msg) {
   await pwPushOff();
-  pw.who = pw.pin = null; pw.msgs = []; pw.loaded = false; pw.err = msg || '';
+  pw.who = pw.pin = null; pw.msgs = []; store.set('pw_cache', null); pw.loaded = false; pw.err = msg || '';
   store.set('pw_who', null); store.set('pw_pin', null);
   pwRender(); pwBadge();
 }
@@ -1121,11 +1174,12 @@ function pwRender() {
     ev.preventDefault(); const body = ta.value.trim(); if (!body) return;
     send.disabled = true; err.textContent = '';
     try { await rpc('pw_post', { ...auth(), p_body: body }); ta.value = ''; pw.err = ''; await pwLoad(); }
-    catch (e) { err.textContent = e.message; send.disabled = false; }
+    catch (e) { err.textContent = e instanceof TypeError ? 'Keine Verbindung. Die Mitteilung wurde nicht gesendet, bitte später erneut versuchen.' : e.message; send.disabled = false; }
   });
   root.append(f);
   if (!pw.loaded) { root.append(el('div', { class: 'empty', text: 'Mitteilungen werden geladen …' })); return; }
   if (!pw.msgs.length) { root.append(el('div', { class: 'empty', text: 'Noch keine Mitteilungen. Schreib die erste.' })); return; }
+  if (pw.offline) root.append(el('p', { class: 'lead', text: 'Keine Verbindung. Du siehst den zuletzt geladenen Stand.' }));
   const seen = lastSeen();
   const ul = el('ul', { class: 'pw-list' });
   pw.msgs.forEach(m => {
@@ -1145,7 +1199,8 @@ function pwRender() {
   root.append(ul);
 }
 async function pwInit() {
-  if (pushOK) { try { await navigator.serviceWorker.register('sw.js'); } catch (e) {} pw.sub = pw.who ? await pwSubState() : null; }
+  if ('serviceWorker' in navigator) { try { await navigator.serviceWorker.register('sw.js'); } catch (e) {} }
+  if (pushOK) pw.sub = pw.who ? await pwSubState() : null;
   pwRender(); pwLoad();
   const tick = () => { if (document.visibilityState === 'visible') pwLoad(); };
   pw.timer = setInterval(tick, 30000);
@@ -1153,20 +1208,51 @@ async function pwInit() {
   if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', ev => { if (!ev.data) return; if (ev.data.type === 'pw') { pwLoad(); show('pinnwand'); } else if (ev.data.type === 'pw-new') pwLoad(); });
 }
 
-function show(t) {
-  if (!TABS.includes(t)) t = 'leaderboard';
+function show(t, init) {
+  const deep = TABS.includes(t);
+  if (!deep) t = 'leaderboard';
   TABS.forEach(x => { $('#' + x).hidden = x !== t; $('#t-' + x).setAttribute('aria-selected', String(x === t)); });
   if (t === 'platz' && window.acRenderCourses) window.acRenderCourses();
   if (t === 'pinnwand') pwSeen();
-  try { history.replaceState(null, '', '#' + t); } catch (e) {}
+  document.querySelectorAll('.tbar button').forEach(b => { const on = b.dataset.t === t || (b.dataset.t === 'mehr' && MORE.includes(t)); if (on) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  document.querySelectorAll('.more button[data-t]').forEach(b => { if (b.dataset.t === t) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  if (!init || deep) { try { history.replaceState(null, '', '#' + t); } catch (e) {} }
 }
-TABS.forEach(t => $('#t-' + t).addEventListener('click', () => { show(t); const m = document.querySelector('main'); const y = m.getBoundingClientRect().top + window.scrollY - document.querySelector('.top').offsetHeight - 8; if (window.scrollY < y) window.scrollTo({top: y, behavior: 'smooth'}); }));
+TABS.forEach(t => $('#t-' + t).addEventListener('click', () => { show(t); toMain(); }));
+const MORE = ['platz','statistik','galerie','hits'];
+function toMain() {
+  const m = document.querySelector('main');
+  const y = m.getBoundingClientRect().top + window.scrollY - document.querySelector('.top').offsetHeight - 8;
+  if (Math.abs(window.scrollY - y) > 4) window.scrollTo({ top: Math.max(0, y), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
+const moreOv = $('#more-ov');
+function moreOpen(on) {
+  moreOv.classList.toggle('open', on); moreOv.setAttribute('aria-hidden', String(!on));
+  if (on) setTimeout(() => { const b = moreOv.querySelector('button[aria-current]') || moreOv.querySelector('button'); b && b.focus({ preventScroll: true }); }, 60);
+}
+document.querySelectorAll('.tbar button').forEach(b => b.addEventListener('click', () => {
+  if (b.dataset.t === 'mehr') { moreOpen(!moreOv.classList.contains('open')); return; }
+  moreOpen(false);
+  const cur = TABS.find(x => !$('#' + x).hidden);
+  if (cur === b.dataset.t) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  show(b.dataset.t); toMain();
+}));
+moreOv.addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (e.target === moreOv || (b && b.hasAttribute('data-close'))) { moreOpen(false); return; }
+  if (b && b.dataset.t) { moreOpen(false); show(b.dataset.t); toMain(); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && moreOv.classList.contains('open')) moreOpen(false); });
+const offl = $('#offl');
+const netState = () => offl.classList.toggle('on', navigator.onLine === false);
+addEventListener('online', () => { netState(); pwLoad(); }); addEventListener('offline', netState); netState();
+
 $('#m-netto').addEventListener('click', () => { mode = 'netto'; $('#m-netto').setAttribute('aria-pressed','true'); $('#m-brutto').setAttribute('aria-pressed','false'); renderLB(); });
 $('#m-brutto').addEventListener('click', () => { mode = 'brutto'; $('#m-brutto').setAttribute('aria-pressed','true'); $('#m-netto').setAttribute('aria-pressed','false'); renderLB(); });
 
 window.addEventListener('resize', () => { if (openRow) renderLB(); });
 function renderAll() { renderStatus(); renderLB(); renderDays(); renderPlayers(); renderStats(); }
-renderHoles(); renderGallery(); renderHits(); renderAll(); pwInit(); show(location.hash.slice(1));
+renderHoles(); renderGallery(); renderHits(); renderAll(); pwInit(); show(location.hash.slice(1), true);
 setInterval(renderStatus, 1000);
 
 /* ---------- Daten (data.json im Repo) ---------- */
