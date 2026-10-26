@@ -348,6 +348,26 @@ section[role="tabpanel"]{gap:28px}
 .bdx>section+section{padding-top:56px}
 .bdx{--bbg:var(--bg);--bg2:var(--surface)}
 .bdx .cc,.bdx .bcard{background:var(--surface)}
+
+/* Hits */
+.album{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:32px;align-items:start}
+.album-cover{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.18);display:block}
+.album-k{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.album-t{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.03em;margin:4px 0 0;text-transform:none}
+.album-m{color:var(--muted);font-size:15px;margin-top:6px}
+.playall{margin-top:18px;border:0;background:var(--fg);color:var(--bg);font-weight:600;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer}
+.tracks{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
+.trk{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.trk:hover{background:color-mix(in srgb,var(--fg) 4%,transparent)}
+.trk .no{color:var(--muted);font-variant-numeric:tabular-nums;text-align:center;font-size:15px}
+.trk .ti{font-weight:600;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trk .vs{font-size:13px;color:var(--muted);font-weight:400}
+.trk .du{color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.trk .bar{grid-column:2 / 4;height:3px;border-radius:2px;background:var(--line);overflow:hidden;display:none}
+.trk .bar i{display:block;height:100%;width:0;background:var(--blue)}
+.trk.on .no,.trk.on .ti{color:var(--blue)}
+.trk.on .bar{display:block}
+@media (max-width:760px){.album{grid-template-columns:1fr;gap:20px}.album-cover{max-width:320px;margin:0 auto}}
 </style>
 
 </head>
@@ -362,6 +382,7 @@ section[role="tabpanel"]{gap:28px}
       <button class="tab" role="tab" id="t-platz" aria-controls="platz" aria-selected="false">Platz</button>
       <button class="tab" role="tab" id="t-statistik" aria-controls="statistik" aria-selected="false">Statistik</button>
       <button class="tab" role="tab" id="t-galerie" aria-controls="galerie" aria-selected="false">Galerie</button>
+      <button class="tab" role="tab" id="t-hits" aria-controls="hits" aria-selected="false">Hits</button>
     </nav>
   </div>
 </header>
@@ -458,6 +479,23 @@ section[role="tabpanel"]{gap:28px}
         <div class="gal" id="gal"></div>
         <p class="swipe">Wischen für weitere Bilder · Tippen vergrößert</p>
       </section>
+    </div>
+  </section>
+
+  <!-- HITS -->
+  <section role="tabpanel" id="hits" aria-labelledby="t-hits" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>Die Hits.</h2><span class="sub">Der Soundtrack zur Bildungsreise. Antippen und laut machen.</span></div>
+      <div class="album">
+        <img class="album-cover" src="hits-cover.jpg" alt="Albumcover Birdie 27 – Hoch die Schläger, Djerba 108: Golfer mit Bier unter Palmen bei Sonnenuntergang" loading="lazy">
+        <div class="album-body">
+          <div class="album-k">Album</div>
+          <h3 class="album-t">Birdie 27 · Best of</h3>
+          <div class="album-m" id="album-m"></div>
+          <button type="button" class="playall" id="playall">▶ Alle abspielen</button>
+          <ol class="tracks" id="tracks"></ol>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -794,6 +832,48 @@ function renderHoles() {
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 150); });
 }
 
+
+function renderHits() {
+  const T = [
+    ['hit-hoch-die-schlaeger.mp3','Hoch die Schläger – Djerba 108','',175],
+    ['hit-hoch-die-schlaeger-2.mp3','Hoch die Schläger – Djerba 108','Version 2',175],
+    ['hit-best-of-108-loch.mp3','Best of 108 Loch','',175],
+    ['hit-best-of-hundertacht-loch.mp3','Best of Hundertacht Loch','',193],
+    ['hit-djerba-hundertacht.mp3','Djerba Hundertacht','',162],
+    ['hit-djerba-hundertacht-2.mp3','Djerba Hundertacht','Version 2',169],
+    ['hit-fairway-fuer-dich.mp3','Fairway für dich','',204],
+    ['hit-fairway-fuer-dich-2.mp3','Fairway für dich','Version 2',211],
+    ['hit-legende-vom-18-loch.mp3','Die Legende vom 18. Loch','',192],
+    ['hit-18-loch.mp3','18 Loch','',235]
+  ];
+  const mmss = s => Math.floor(s/60) + ':' + String(Math.round(s%60)).padStart(2,'0');
+  const total = T.reduce((a,x) => a + x[3], 0);
+  $('#album-m').textContent = T.length + ' Titel · ' + Math.round(total/60) + ' Minuten · Afrika Championships 2027';
+  const ol = $('#tracks'), au = new Audio(); au.preload = 'none';
+  let cur = -1;
+  const rows = T.map(([f,ti,vs,d], i) => {
+    const li = el('li', {class:'trk', tabindex:'0', role:'button', 'aria-label': ti + (vs ? ' ' + vs : '') + ' abspielen'});
+    const no = el('span', {class:'no', text: String(i+1)});
+    const t = el('span', {class:'ti'}, [ti, vs ? el('span', {class:'vs', text: ' · ' + vs}) : null]);
+    const du = el('span', {class:'du', text: mmss(d)});
+    const bar = el('span', {class:'bar'}, el('i'));
+    li.append(no, t, du, bar);
+    const go = () => play(i);
+    li.addEventListener('click', go);
+    li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    ol.append(li); return {li, no, bar: bar.firstChild, n: String(i+1)};
+  });
+  function mark() { rows.forEach((r,i) => { r.li.classList.toggle('on', i === cur); r.no.textContent = i === cur ? (au.paused ? '❚❚' : '▶') : r.n; }); $('#playall').textContent = !au.paused ? '❚❚ Pause' : '▶ ' + (cur < 0 ? 'Alle abspielen' : 'Weiter'); }
+  function play(i) {
+    if (i === cur) { au.paused ? au.play() : au.pause(); return; }
+    cur = i; au.src = GAL_BASE + T[i][0]; au.play().catch(() => {}); mark();
+  }
+  au.addEventListener('play', mark); au.addEventListener('pause', mark);
+  au.addEventListener('timeupdate', () => { if (cur >= 0 && au.duration) rows[cur].bar.style.width = (au.currentTime / au.duration * 100) + '%'; });
+  au.addEventListener('ended', () => { rows[cur].bar.style.width = '0'; if (cur < T.length - 1) play(cur + 1); else { cur = -1; mark(); } });
+  $('#playall').addEventListener('click', () => { if (cur < 0) play(0); else au.paused ? au.play() : au.pause(); });
+}
+
 function renderGallery() {
   const bel = (tg, c, x) => { const e = document.createElement(tg); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
   const G = [['galerie-1','Abschlag Gelb','b'],['galerie-2','Bunker vor dem Grün'],['galerie-3','Fahne zwischen Palmen'],['galerie-6','Das 19. Loch','t'],['galerie-4','Auf dem Grün'],['galerie-5','Golf Djerba Club'],
@@ -843,7 +923,7 @@ function renderStats() {
 }
 
 /* ---------- Reiter ---------- */
-const TABS = ['leaderboard','startzeiten','spieler','platz','statistik','galerie'];
+const TABS = ['leaderboard','startzeiten','spieler','platz','statistik','galerie','hits'];
 function show(t) {
   if (!TABS.includes(t)) t = 'leaderboard';
   TABS.forEach(x => { $('#' + x).hidden = x !== t; $('#t-' + x).setAttribute('aria-selected', String(x === t)); });
@@ -856,7 +936,7 @@ $('#m-brutto').addEventListener('click', () => { mode = 'brutto'; $('#m-brutto')
 
 window.addEventListener('resize', () => { if (openRow) renderLB(); });
 function renderAll() { renderStatus(); renderLB(); renderDays(); renderPlayers(); renderStats(); }
-renderHoles(); renderGallery(); renderAll(); show(location.hash.slice(1));
+renderHoles(); renderGallery(); renderHits(); renderAll(); show(location.hash.slice(1));
 setInterval(renderStatus, 1000);
 
 /* ---------- Daten (data.json im Repo) ---------- */
