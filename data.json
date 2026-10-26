@@ -1,5 +1,5 @@
 {
- "stand": "26.10.2026, Flights ausgelost",
+ "stand": "26.10.2026 · Flights ausgelost, Runde 1 angepasst",
  "vorgaben": {},
  "rounds": [
   {
@@ -52,7 +52,7 @@
    "size": 3,
    "players": [
     "georg",
-    "maurizio",
+    "klaus",
     "hartmut"
    ]
   },
@@ -75,7 +75,7 @@
    "size": 4,
    "players": [
     "reinhold",
-    "klaus",
+    "maurizio",
     "volker",
     "stefan"
    ]
