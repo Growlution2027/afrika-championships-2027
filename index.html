@@ -507,6 +507,17 @@ html.noscroll{overflow:hidden}
 .rb-i:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
 .rb-v{position:absolute;right:6px;bottom:6px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:12px;display:grid;place-items:center;padding-left:2px;box-sizing:border-box}
 @media (max-width:760px){.rb-g{grid-template-columns:repeat(3,1fr);gap:2px;border-radius:10px;margin-inline:-4px}.bdx .rb{margin-top:40px}}
+
+.rb-hero{margin:26px 0 8px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;background:var(--surface);border-radius:22px;padding:18px;overflow:hidden}
+.rb-hero video{height:min(560px,70vh);aspect-ratio:9/16;width:auto;border-radius:14px;background:#000;display:block;object-fit:cover}
+.rb-hero figcaption{display:flex;flex-direction:column;gap:8px;padding-bottom:8px}
+.rb-hero .rb-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.rb-hero b{font-size:clamp(24px,3.2vw,38px);line-height:1.1;letter-spacing:-.02em;font-weight:700;color:var(--fg)}
+.rb-hero .rb-m{font-size:14px;color:var(--fg3)}
+.rb-hero .playall{align-self:flex-start;margin-top:8px}
+.rb-iv{grid-column:span 2;grid-row:span 2}.rb-iv img{object-position:50% 12%}.rb-g{grid-auto-flow:dense}
+.rb-vt{position:absolute;left:8px;right:44px;bottom:8px;color:#fff;font-size:12px;font-weight:600;text-align:left;text-shadow:0 1px 4px rgba(0,0,0,.6);line-height:1.25}
+@media (max-width:760px){.rb-hero{grid-template-columns:1fr;gap:14px;padding:12px;border-radius:18px}.rb-hero video{height:min(64vh,calc((100vw - 52px) * 16 / 9));width:auto;max-width:100%;margin:0 auto;object-fit:contain}.rb-hero figcaption{order:-1;padding:4px 4px 0}.rb-hero .playall{display:none}}
 </style>
 
 </head>
@@ -618,6 +629,10 @@ html.noscroll{overflow:hidden}
       <section class="rb" id="rb26">
         <h2 class="sh">Rückblick 2026.</h2>
         <p class="ss" id="rb-n">Afrika Championships 2026 auf Djerba.</p>
+        <figure class="rb-hero">
+          <video id="rb-vid" controls playsinline preload="none" poster="rb26-110-p.webp" src="rb26-110.mp4"></video>
+          <figcaption><span class="rb-k">Video</span><b>Bunkerschlag für Fortgeschrittene mit Hindernis</b><span class="rb-m">Do 26.02.2026 · 1:35 Minuten · Ton an</span><button type="button" class="playall" id="rb-play">▶ Abspielen</button></figcaption>
+        </figure>
         <div id="rb"></div>
       </section>
     </div>
@@ -1046,22 +1061,24 @@ function makeLB(L) {
 
 /* Rückblick Afrika Championships 2026, chronologisch nach Tagen */
 function renderRB(bel) {
-  const RB = [["Vorfreude",[["001","p"],["002","p"],["003","p"],["004","p"],["005","p"],["006","p"],["007","p"],["008","p"],["009","p"],["010","p"],["011","p"],["012","p"],["013","p"],["014","p"],["016","p"],["017","p"],["019","p"],["020","p"],["021","p"],["022","p"]]],["Sa 21.02.",[["023","p"],["024","p"],["025","p"],["026","p"],["027","p"]]],["So 22.02.",[["028","p"],["029","p"],["030","p"],["031","p"],["032","p"],["033","p"],["034","p"],["035","p"],["036","p"],["037","p"],["038","p"],["039","p"],["041","p"],["042","p"],["043","p"],["044","p"],["045","p"],["046","p"],["047","p"],["048","p"],["049","p"],["050","p"],["051","p"],["052","p"],["053","p"],["054","p"],["055","p"],["056","p"],["057","p"],["058","p"],["059","p"],["060","p"]]],["Mo 23.02.",[["061","p"],["062","p"],["063","p"],["064","p"],["065","p"],["066","p"],["067","p"],["068","p"],["069","p"],["070","p"],["071","p"],["072","p"],["073","p"],["074","p"],["075","p"],["076","p"]]],["Di 24.02.",[["077","p"],["078","p"],["079","p"],["080","p"],["081","p"],["082","p"],["083","p"],["084","p"],["085","p"],["086","p"],["087","p"],["088","p"],["089","p"]]],["Mi 25.02.",[["090","p"],["091","p"],["092","p"],["093","p"],["094","p"],["095","p"],["096","p"],["097","p"],["098","p"],["099","p"],["100","p"],["101","p"],["102","p"]]],["Do 26.02.",[["104","p"],["105","p"],["106","p"],["107","p"],["108","p"],["109","p"],["110","v"],["111","p"],["112","p"]]],["Fr 27.02.",[["113","p"]]]];
+  const RB = [["Vorfreude",[["003","p"],["004","p"],["005","p"],["008","p"],["009","p"],["010","p"],["011","p"],["012","p"],["013","p"],["016","p"],["017","p"],["019","p"],["021","p"],["022","p"]]],["Sa 21.02.",[["023","p"],["024","p"],["025","p"],["026","p"],["027","p"]]],["So 22.02.",[["028","p"],["029","p"],["030","p"],["031","p"],["032","p"],["033","p"],["034","p"],["035","p"],["036","p"],["037","p"],["038","p"],["039","p"],["041","p"],["042","p"],["043","p"],["044","p"],["045","p"],["046","p"],["047","p"],["048","p"],["049","p"],["050","p"],["051","p"],["052","p"],["053","p"],["054","p"],["055","p"],["056","p"],["057","p"],["058","p"],["059","p"],["060","p"]]],["Mo 23.02.",[["061","p"],["062","p"],["063","p"],["064","p"],["065","p"],["066","p"],["067","p"],["068","p"],["069","p"],["070","p"],["071","p"],["072","p"],["073","p"],["074","p"],["075","p"],["076","p"]]],["Di 24.02.",[["077","p"],["078","p"],["079","p"],["080","p"],["081","p"],["082","p"],["083","p"],["084","p"],["085","p"],["086","p"],["087","p"],["088","p"],["089","p"]]],["Mi 25.02.",[["090","p"],["091","p"],["092","p"],["093","p"],["094","p"],["095","p"],["096","p"],["097","p"],["098","p"],["099","p"],["100","p"],["101","p"],["102","p"]]],["Do 26.02.",[["104","p"],["105","p"],["106","p"],["107","p"],["108","p"],["109","p"],["110","v"],["111","p"],["112","p"]]],["Fr 27.02.",[["113","p"]]]];
   const L = [], root = $('#rb'); let np = 0, nv = 0;
   RB.forEach(([day, list]) => {
     const h = bel('h3','rb-d', day); const grid = bel('div','rb-g');
     list.forEach(([n,k]) => {
       const idx = L.length, src = GAL_BASE + 'rb26-' + n, cap = 'Rückblick 2026 · ' + day;
-      if (k === 'v') { L.push({ src: src + '.mp4', poster: src + '-s.webp', cap, video: true }); nv++; }
+      if (k === 'v') { L.push({ src: src + '.mp4', poster: src + '-p.webp', cap: 'Bunkerschlag für Fortgeschrittene mit Hindernis · ' + day, video: true }); nv++; }
       else { L.push({ src: src + '.webp', cap }); np++; }
-      const b = bel('button','rb-i'); b.type = 'button'; b.setAttribute('aria-label', (k === 'v' ? 'Video ' : 'Bild ') + (idx+1) + ', ' + day);
+      const b = bel('button', k === 'v' ? 'rb-i rb-iv' : 'rb-i'); b.type = 'button'; b.setAttribute('aria-label', (k === 'v' ? 'Video ' : 'Bild ') + (idx+1) + ', ' + day);
       const i = bel('img'); i.src = src + '-s.webp'; i.alt = ''; i.loading = 'lazy'; i.decoding = 'async'; b.append(i);
-      if (k === 'v') b.append(bel('span','rb-v','▶'));
+      if (k === 'v') { i.src = src + '-p.webp'; b.append(bel('span','rb-v','▶'), bel('span','rb-vt','Bunkerschlag für Fortgeschrittene mit Hindernis')); }
       b.onclick = () => open(idx); grid.append(b);
     });
     root.append(h, grid);
   });
   const open = makeLB(L);
+  const hv = $('#rb-vid'); $('#rb-play').onclick = () => { hv.play().catch(() => {}); };
+  hv.addEventListener('play', () => $('#rb-play').hidden = true); hv.addEventListener('pause', () => $('#rb-play').hidden = false);
   $('#rb-n').textContent = np + ' Bilder' + (nv ? ' und ' + nv + ' Video' : '') + ' von den Afrika Championships 2026, chronologisch.';
 }
 
