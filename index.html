@@ -546,24 +546,44 @@ html.noscroll{overflow:hidden}
 .pr[open] .pr-c{transform:rotate(90deg)}
 .psc{padding:2px 12px 12px;display:flex;flex-direction:column;gap:10px}
 .psc .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.sct{border-collapse:collapse;width:100%;min-width:520px;font-size:13px;background:var(--bg);border-radius:10px;overflow:hidden}
-.sct caption{text-align:left;font-size:12px;color:var(--muted);padding:0 2px 4px;font-weight:600}
-.sct th,.sct td{text-align:center;padding:6px 2px;border-bottom:1px solid var(--line);min-width:30px}
-.sct th{text-align:left;padding-left:10px;font-weight:600;color:var(--muted);font-size:12px;width:70px;white-space:nowrap}
-.sct .sum{font-weight:700;min-width:44px;background:var(--surface-2)}
-.sct tr.hd td,.sct tr.hd th{font-weight:700;color:var(--fg);background:var(--surface-2)}
-.sct tr.mt td{color:var(--muted);font-size:12px}
-.sct tr.pa td{font-weight:600}
-.sct tr.st td,.sct tr.pu td{height:30px}
-.sct tr:last-child td,.sct tr:last-child th{border-bottom:0}
-.sct td span{display:inline-block;min-width:24px;line-height:24px;border-radius:999px}
-.sct span.u{outline:2px solid #2e9e5b;color:#2e9e5b;font-weight:700}
-.sct span.b{color:var(--muted)}
-.sct span.d{color:#e07a1f;font-weight:700}
-.sct span.p3{color:#d93a3a;font-weight:700}
-.sct span.p1{color:#2e9e5b;font-weight:700}
-@media (max-width:600px){.pcard .facts{grid-template-columns:repeat(4,1fr);gap:6px}.pcard .fact{padding:7px 8px}.pcard .fact span{font-size:9.5px;letter-spacing:.04em}.pcard .fact b{font-size:17px}.pcard .bd{padding:12px 12px 20px}.psc{padding:0 8px 10px}.sct{min-width:0;table-layout:fixed;font-size:12px}.sct th{width:54px;padding-left:6px;font-size:11px}.sct th,.sct td{min-width:0;padding:6px 0}.sct .sum{width:38px;min-width:0}.sct td span{min-width:20px;line-height:20px}.pr-m span{white-space:normal}}
+@media (max-width:600px){.pcard .facts{grid-template-columns:repeat(4,1fr);gap:6px}.pcard .fact{padding:7px 8px}.pcard .fact span{font-size:9.5px;letter-spacing:.04em}.pcard .fact b{font-size:17px}.pcard .bd{padding:12px 12px 20px}.psc{padding:0 6px 10px}.pr-m span{white-space:normal}}
 .psc-f{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:0 2px}
+
+/* ---------- Scorekarte im Clubkarten-Look ---------- */
+.pcard{--sc-g:#1f6b45;--sc-g2:#e8f3ec;--sc-b:#2f6fcf;--sc-b2:#e7effb;--sc-h:#f3f4f6;--sc-line:#d9dee3;--sc-w:#ffffff}
+@media (prefers-color-scheme:dark){.pcard{--sc-g:#2a8a5a;--sc-g2:#173326;--sc-b:#5b95ea;--sc-b2:#16243a;--sc-h:#24272c;--sc-line:#3a3f46;--sc-w:#121417}}
+:root[data-theme="dark"] .pcard{--sc-g:#2a8a5a;--sc-g2:#173326;--sc-b:#5b95ea;--sc-b2:#16243a;--sc-h:#24272c;--sc-line:#3a3f46;--sc-w:#121417}
+.sct{border-collapse:separate;border-spacing:0;width:100%;font-size:15px;font-variant-numeric:tabular-nums;background:var(--sc-w);border:1px solid var(--sc-line);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.06);table-layout:fixed}
+.sct caption{caption-side:top;text-align:left;padding:0 0 6px 2px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--sc-g)}
+.sct th,.sct td{height:38px;padding:0;text-align:center;border-right:1px solid var(--sc-line);border-bottom:1px solid var(--sc-line)}
+.sct tr>*:last-child{border-right:0}
+.sct tr:last-child>*{border-bottom:0}
+.sct th{width:84px;text-align:left;padding-left:12px;font-size:13px;font-weight:700;color:var(--fg)}
+.sct .sum{width:58px;font-weight:800}
+.sct tr.hd>*{background:var(--sc-g);color:#fff;font-weight:800;font-size:15px;border-color:rgba(255,255,255,.18)}
+.sct tr.hd .sum{background:color-mix(in srgb,var(--sc-g) 80%,#000)}
+.sct tr.mt>*{background:var(--sc-b2);color:var(--sc-b);font-size:13.5px;font-weight:600}
+.sct tr.mt th{position:relative;padding-left:24px}
+.sct tr.mt th::before{content:"";position:absolute;left:10px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--sc-b)}
+.sct tr.mt .sum{background:color-mix(in srgb,var(--sc-b2) 70%,var(--sc-b) 30%);color:var(--sc-b)}
+.sct tr.pa>*{background:var(--sc-g2);font-weight:800;font-size:16px}
+.sct tr.pa .sum{background:color-mix(in srgb,var(--sc-g2) 60%,var(--sc-g) 40%);color:#fff}
+.sct tr.hc>*{background:var(--sc-h);color:var(--muted);font-size:13px}
+.sct tr.vg>*{background:var(--sc-h);color:var(--sc-g);font-size:13px;letter-spacing:2px}
+.sct tr.st>*,.sct tr.pu>*{height:44px;background:var(--sc-w)}
+.sct tr.st th,.sct tr.pu th{background:var(--sc-h)}
+.sct tr.st .sum,.sct tr.pu .sum{background:var(--sc-h)}
+.sct tr.st{border-top:2px solid var(--sc-g)}
+.sct tr.st>*{border-top:2px solid var(--sc-g)}
+.sct td span{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:999px;font-weight:700}
+.sct span.u{box-shadow:inset 0 0 0 2px #2e9e5b;color:#2e9e5b}
+.sct span.b{color:var(--muted)}
+.sct span.d{background:#fdebd8;color:#c2600f}
+.sct span.p3{color:#d93a3a}
+.sct span.p1{color:#2e9e5b}
+.psc{gap:16px}
+.psc-f{font-size:13px}
+@media (max-width:600px){.sct{font-size:13px;border-radius:10px}.sct th{width:52px;padding-left:6px;font-size:11px}.sct tr.mt th{padding-left:6px}.sct tr.mt th::before{display:none}.sct .sum{width:38px}.sct th,.sct td{height:32px}.sct tr.st>*,.sct tr.pu>*{height:38px}.sct tr.hd>*{font-size:13px}.sct tr.pa>*{font-size:14px}.sct tr.mt>*{font-size:10.5px;letter-spacing:-.02em}.sct tr.hc>*{font-size:11.5px}.sct td span{min-width:22px;height:22px}}
 </style>
 
 </head>
@@ -954,8 +974,8 @@ function scoreCard(id, r, f) {
     line('Loch', idx.map(i => String(off + i + 1)), off ? 'In' : 'Out', 'hd');
     line('Meter', co.B.map(String), String(sum(co.B)), 'mt');
     line('Par', co.par.map(String), String(sum(co.par)), 'pa');
-    line('Hcp', hp.map(String), '');
-    if (sv != null) line('Vorgabe', hp.map(h => { const n = Math.floor(sv / 18) + (h <= ((sv % 18) + 18) % 18 ? 1 : 0); return n > 0 ? '•'.repeat(n) : ''; }), '');
+    line('Hcp', hp.map(String), '', 'hc');
+    if (sv != null) line('Vorgabe', hp.map(h => { const n = Math.floor(sv / 18) + (h <= ((sv % 18) + 18) % 18 ? 1 : 0); return n > 0 ? '•'.repeat(n) : ''; }), '', 'vg');
     const val = (i, k) => { const h = holes[off + i]; return h && h[k] != null && h[k] !== '' ? Number(h[k]) : null; };
     const st = idx.map(i => val(i, 's')), pu = idx.map(i => val(i, 'p'));
     line('Schläge', idx.map(i => { const v = st[i], sp = el('span', {text: v == null ? '' : String(v)}); if (v != null) sp.className = v - co.par[i] <= 0 ? 'u' : v - co.par[i] === 1 ? 'b' : 'd'; return sp; }), st.every(v => v != null) ? String(sum(st)) : '', 'st');
