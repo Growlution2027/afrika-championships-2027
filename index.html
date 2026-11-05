@@ -584,6 +584,16 @@ html.noscroll{overflow:hidden}
 .psc{gap:16px}
 .psc-f{font-size:13px}
 @media (max-width:600px){.sct{font-size:13px;border-radius:10px}.sct th{width:52px;padding-left:6px;font-size:11px}.sct tr.mt th{padding-left:6px}.sct tr.mt th::before{display:none}.sct .sum{width:38px}.sct th,.sct td{height:32px}.sct tr.st>*,.sct tr.pu>*{height:38px}.sct tr.hd>*{font-size:13px}.sct tr.pa>*{font-size:14px}.sct tr.mt>*{font-size:10.5px;letter-spacing:-.02em}.sct tr.hc>*{font-size:11.5px}.sct td span{min-width:22px;height:22px}}
+
+.psh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;background:var(--sc-g);color:#fff;border-radius:12px;padding:12px 14px}
+.psh-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.psh-t b{font-size:16px}
+.psh-t span{font-size:12.5px;opacity:.85}
+.psh-k{display:grid;grid-template-columns:repeat(6,minmax(48px,auto));gap:6px}
+.psk{background:rgba(255,255,255,.14);border-radius:8px;padding:5px 8px;text-align:center}
+.psk span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;opacity:.85}
+.psk b{font-size:17px;font-weight:800}
+@media (max-width:600px){.psh{padding:10px}.psh-k{width:100%;grid-template-columns:repeat(6,1fr);gap:4px}.psk{padding:4px 2px}.psk span{font-size:9px;letter-spacing:0}.psk b{font-size:14px}}
 </style>
 
 </head>
@@ -966,6 +976,17 @@ function scoreCard(id, r, f) {
   const key = Object.keys(COMBOS).find(k => COMBOS[k].name === r.kombi) || ROUND_COMBO[r.runde - 1], c = COMBOS[key];
   const sv = state.vorgaben[id], sc = state.scores.find(x => x.spieler === id && x.runde === r.runde), holes = sc && Array.isArray(sc.holes) ? sc.holes : [];
   const wrap = el('div', {class:'psc'});
+  const H = holes.slice(0, 18), num = (h, k) => h && h[k] != null && h[k] !== '' ? Number(h[k]) : null;
+  const allP = COURSES[c.a].par.concat(COURSES[c.b].par), parT = allP.reduce((a, b) => a + b, 0);
+  const done = H.length === 18 && H.every(h => num(h, 's') != null), sS = done ? H.reduce((a, h) => a + num(h, 's'), 0) : null;
+  const pOk = H.length === 18 && H.every(h => num(h, 'p') != null), pS = pOk ? H.reduce((a, h) => a + num(h, 'p'), 0) : null;
+  const p3 = pOk ? H.filter(h => num(h, 'p') >= 3).length : null, zp = sS != null ? sS - parT : null;
+  const kv = (k, v, cls) => el('div', {class:'psk' + (cls ? ' ' + cls : '')}, [el('span', {text:k}), el('b', {class:'num', text:v})]);
+  wrap.append(el('div', {class:'psh'}, [
+    el('div', {class:'psh-t'}, [el('b', {text:'Runde ' + r.runde + ' · ' + tag(r.datum)}), el('span', {text: c.name + ' · Abschlag Blau · ' + f.abschlag + ' Uhr · Flight ' + f.flight})]),
+    el('div', {class:'psh-k'}, [kv('Par', String(parT)), kv('Brutto', sS != null ? String(sS) : '–'), kv('+/−', zp != null ? (zp > 0 ? '+' + zp : String(zp)) : '–'),
+      kv('Netto', sS != null && sv != null ? String(sS - sv) : '–'), kv('Putts', pS != null ? String(pS) : '–'), kv('3-Putts', p3 != null ? String(p3) : '–')])
+  ]));
   [[c.a, 0], [c.b, 9]].forEach(([cid, off]) => {
     const co = COURSES[cid], box = el('div', {class:'scroll'}), tb = el('table', {class:'sct num'});
     tb.append(el('caption', {text: (off ? '10–18' : '1–9') + ' · ' + co.name}));
