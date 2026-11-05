@@ -1027,7 +1027,7 @@ function openProfile(id) {
    ['Runden', '6 × 18 Loch · ' + mates + ' verschiedene Flightpartner'],
    ['Gut zu wissen', p.note || null]
   ].filter(([, v]) => v).forEach(([k, v]) => sb.append(el('dt', {text: k}), el('dd', {text: v})));
-  const head = el('div', {class:'phd'}, [ph, el('div', {class:'phd-t'}, [el('div', {class:'kick', text:'Steckbrief'}), el('h3', {id:'pf-name', text: name(p)}), sb])]);
+  const head = el('div', {class:'phd'}, [ph, el('div', {class:'phd-t'}, [el('h3', {id:'pf-name', text: name(p)}), sb])]);
   const facts = el('div', {class:'facts'}, [
     ['Spielvorgabe', sv != null ? String(sv) : 'offen'],
     ['Platz brutto', stB && stB.any ? stB.pos : '–'], ['Platz netto', stN && stN.any ? stN.pos : '–'],
