@@ -518,6 +518,52 @@ html.noscroll{overflow:hidden}
 .rb-iv{grid-column:span 2;grid-row:span 2}.rb-iv img{object-position:50% 12%}.rb-g{grid-auto-flow:dense}
 .rb-vt{position:absolute;left:8px;right:44px;bottom:8px;color:#fff;font-size:12px;font-weight:600;text-align:left;text-shadow:0 1px 4px rgba(0,0,0,.6);line-height:1.25}
 @media (max-width:760px){.rb-hero{grid-template-columns:1fr;gap:14px;padding:12px;border-radius:18px}.rb-hero video{height:min(64vh,calc((100vw - 52px) * 16 / 9));width:auto;max-width:100%;margin:0 auto;object-fit:contain}.rb-hero figcaption{order:-1;padding:4px 4px 0}.rb-hero .playall{display:none}}
+
+/* ---------- Spielerprofil mit Steckbrief und Scorekarten ---------- */
+.card.pcard{display:block;position:relative;width:min(100%,880px)}
+.pcard>.x{position:sticky;float:right;top:10px;margin:10px 10px -46px 0;z-index:3}
+.phd{display:grid;grid-template-columns:200px 1fr;gap:22px;padding:18px 18px 4px;align-items:start}
+.phd .ph{min-height:0;aspect-ratio:3/4;border-radius:14px;background-position:center 20%}
+.phd .ph .ini{font-size:72px}
+.phd-t{min-width:0;padding-top:6px}
+.phd .kick{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.phd h3{margin:0 0 14px}
+.sb{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;font-size:14px;line-height:1.35}
+.sb dt{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.sb dd{margin:0}
+@media (max-width:600px){.phd{grid-template-columns:110px 1fr;gap:14px;padding:16px 14px 0}.phd h3{font-size:22px;margin-bottom:10px}.sb{grid-template-columns:1fr;gap:2px}.sb dd{margin-bottom:6px}}
+.pcard .bd{padding:14px 18px 22px}
+.ph4{margin:6px 0 8px;font-family:var(--font-display);font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.prd{display:flex;flex-direction:column;gap:8px}
+.pr{background:var(--surface-2);border-radius:12px;overflow:hidden}
+.pr summary{list-style:none;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pr summary::-webkit-details-marker{display:none}
+.pr-r{width:34px;height:34px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-weight:700;font-size:13px}
+.pr-m{display:flex;flex-direction:column;min-width:0}
+.pr-m b{font-size:15px}
+.pr-m span{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr-c{font-size:22px;color:var(--muted);transition:transform .2s}
+.pr[open] .pr-c{transform:rotate(90deg)}
+.psc{padding:2px 12px 12px;display:flex;flex-direction:column;gap:10px}
+.psc .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sct{border-collapse:collapse;width:100%;min-width:520px;font-size:13px;background:var(--bg);border-radius:10px;overflow:hidden}
+.sct caption{text-align:left;font-size:12px;color:var(--muted);padding:0 2px 4px;font-weight:600}
+.sct th,.sct td{text-align:center;padding:6px 2px;border-bottom:1px solid var(--line);min-width:30px}
+.sct th{text-align:left;padding-left:10px;font-weight:600;color:var(--muted);font-size:12px;width:70px;white-space:nowrap}
+.sct .sum{font-weight:700;min-width:44px;background:var(--surface-2)}
+.sct tr.hd td,.sct tr.hd th{font-weight:700;color:var(--fg);background:var(--surface-2)}
+.sct tr.mt td{color:var(--muted);font-size:12px}
+.sct tr.pa td{font-weight:600}
+.sct tr.st td,.sct tr.pu td{height:30px}
+.sct tr:last-child td,.sct tr:last-child th{border-bottom:0}
+.sct td span{display:inline-block;min-width:24px;line-height:24px;border-radius:999px}
+.sct span.u{outline:2px solid #2e9e5b;color:#2e9e5b;font-weight:700}
+.sct span.b{color:var(--muted)}
+.sct span.d{color:#e07a1f;font-weight:700}
+.sct span.p3{color:#d93a3a;font-weight:700}
+.sct span.p1{color:#2e9e5b;font-weight:700}
+@media (max-width:600px){.pcard .facts{grid-template-columns:repeat(4,1fr);gap:6px}.pcard .fact{padding:7px 8px}.pcard .fact span{font-size:9.5px;letter-spacing:.04em}.pcard .fact b{font-size:17px}.pcard .bd{padding:12px 12px 20px}.psc{padding:0 8px 10px}.sct{min-width:0;table-layout:fixed;font-size:12px}.sct th{width:54px;padding-left:6px;font-size:11px}.sct th,.sct td{min-width:0;padding:6px 0}.sct .sum{width:38px;min-width:0}.sct td span{min-width:20px;line-height:20px}.pr-m span{white-space:normal}}
+.psc-f{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:0 2px}
 </style>
 
 </head>
@@ -896,6 +942,31 @@ function renderPlayers() {
     g.append(c);
   });
 }
+function scoreCard(id, r, f) {
+  const key = Object.keys(COMBOS).find(k => COMBOS[k].name === r.kombi) || ROUND_COMBO[r.runde - 1], c = COMBOS[key];
+  const sv = state.vorgaben[id], sc = state.scores.find(x => x.spieler === id && x.runde === r.runde), holes = sc && Array.isArray(sc.holes) ? sc.holes : [];
+  const wrap = el('div', {class:'psc'});
+  [[c.a, 0], [c.b, 9]].forEach(([cid, off]) => {
+    const co = COURSES[cid], box = el('div', {class:'scroll'}), tb = el('table', {class:'sct num'});
+    tb.append(el('caption', {text: (off ? '10–18' : '1–9') + ' · ' + co.name}));
+    const line = (label, vals, sum, cls) => { const tr = el('tr', cls ? {class: cls} : {}, [el('th', {text: label})]); vals.forEach(v => tr.append(v instanceof Node ? el('td', {}, [v]) : el('td', {text: v}))); tr.append(el('td', {class:'sum', text: sum})); tb.append(tr); };
+    const idx = [...Array(9).keys()], hp = c.hp.slice(off, off + 9), sum = a => a.reduce((x, y) => x + y, 0);
+    line('Loch', idx.map(i => String(off + i + 1)), off ? 'In' : 'Out', 'hd');
+    line('Meter', co.B.map(String), String(sum(co.B)), 'mt');
+    line('Par', co.par.map(String), String(sum(co.par)), 'pa');
+    line('Hcp', hp.map(String), '');
+    if (sv != null) line('Vorgabe', hp.map(h => { const n = Math.floor(sv / 18) + (h <= ((sv % 18) + 18) % 18 ? 1 : 0); return n > 0 ? '•'.repeat(n) : ''; }), '');
+    const val = (i, k) => { const h = holes[off + i]; return h && h[k] != null && h[k] !== '' ? Number(h[k]) : null; };
+    const st = idx.map(i => val(i, 's')), pu = idx.map(i => val(i, 'p'));
+    line('Schläge', idx.map(i => { const v = st[i], sp = el('span', {text: v == null ? '' : String(v)}); if (v != null) sp.className = v - co.par[i] <= 0 ? 'u' : v - co.par[i] === 1 ? 'b' : 'd'; return sp; }), st.every(v => v != null) ? String(sum(st)) : '', 'st');
+    line('Putts', idx.map(i => { const v = pu[i], sp = el('span', {text: v == null ? '' : String(v)}); if (v != null) sp.className = v >= 3 ? 'p3' : v <= 1 ? 'p1' : ''; return sp; }), pu.every(v => v != null) ? String(sum(pu)) : '', 'pu');
+    box.append(tb); wrap.append(box);
+  });
+  const tp = COURSES[c.a].par.concat(COURSES[c.b].par).reduce((a, b) => a + b, 0), tm = COURSES[c.a].B.concat(COURSES[c.b].B).reduce((a, b) => a + b, 0);
+  wrap.append(el('div', {class:'psc-f'}, [el('span', {text: 'Gesamt Par ' + tp + ' · ' + tm.toLocaleString('de-DE') + ' m · Abschlag Blau'}), el('span', {text: 'Spielvorgabe ' + (sv != null ? sv : 'offen')})]));
+  return wrap;
+}
+
 function openProfile(id) {
   const p = P[id], ov = $('#ov'); ov.innerHTML = '';
   const cr = currentRound();
@@ -904,24 +975,42 @@ function openProfile(id) {
   const best = rs.length ? Math.min(...rs.map(x => x.strokes)) : null;
   const ph = el('div', {class:'ph'});
   if (IMG['card_' + id]) ph.style.backgroundImage = 'url(' + IMG['card_' + id] + ')'; else ph.append(el('span', {class:'ini', text: p.fn[0] + p.ln.replace(/^(van den |Le )/,'')[0]}));
-  const close = el('button', {type:'button', class:'x', 'aria-label':'Profil schließen', text:'×'}); ph.append(close);
+  const close = el('button', {type:'button', class:'x', 'aria-label':'Profil schließen', text:'×'});
+  const sv = state.vorgaben[id];
+  const nf = state.flights.filter(f => f.players.includes(id));
+  const mates = [...new Set(nf.flatMap(f => f.players.filter(x => x !== id)))].length;
+  const sb = el('dl', {class:'sb'});
+  [['Rolle', p.role ? p.role + (p.sub ? ' · ' + p.sub : '') : null],
+   ['Afrika Championships', p.y26 ? '2. Teilnahme · dabei 2026' : 'Debüt 2027'],
+   ['Spielvorgabe', sv != null ? String(sv) : 'folgt'],
+   ['Runden', '6 × 18 Loch · ' + mates + ' verschiedene Flightpartner'],
+   ['Gut zu wissen', p.note || null]
+  ].filter(([, v]) => v).forEach(([k, v]) => sb.append(el('dt', {text: k}), el('dd', {text: v})));
+  const head = el('div', {class:'phd'}, [ph, el('div', {class:'phd-t'}, [el('div', {class:'kick', text:'Steckbrief'}), el('h3', {id:'pf-name', text: name(p)}), sb])]);
   const facts = el('div', {class:'facts'}, [
-    ['Spielvorgabe', state.vorgaben[id] != null ? String(state.vorgaben[id]) : 'offen'],
+    ['Spielvorgabe', sv != null ? String(sv) : 'offen'],
     ['Platz brutto', stB && stB.any ? stB.pos : '–'], ['Platz netto', stN && stN.any ? stN.pos : '–'],
     ['Runden', String(rs.length) + ' / 6'], ['Beste Runde', best != null ? String(best) : '–'],
     ['Ø Putts', rs.length ? de1(rs.reduce((a,x)=>a+x.putts,0)/rs.length) : '–'],
     ['Birdies+', rs.length ? String(rs.reduce((a,x)=>a+x.birdies,0)) : '–'], ['3-Putts', rs.length ? String(rs.reduce((a,x)=>a+x.three,0)) : '–']
   ].map(([k,v]) => el('div', {class:'fact'}, [el('span', {text:k}), el('b', {class:'num', text:v})])));
-  const tt = el('table', {class:'tt'});
-  state.rounds.forEach(r => { const f = state.flights.find(f => f.runde === r.runde && f.players.includes(id)); if (!f) return; tt.append(el('tr', {}, [el('td', {text: tag(r.datum)}), el('td', {}, [el('b', {text: f.abschlag + ' Uhr'}), ' · Flight ' + f.flight + ' mit ' + partners(id, r.runde)])])); });
-  const tags = el('div', {style:'display:flex;gap:6px;flex-wrap:wrap'}, [el('span', {class:'tag' + (p.y26 ? ' b' : ''), text: p.y26 ? '2. Teilnahme · dabei 2026' : 'Debüt 2027'})]);
+  const rounds = el('div', {class:'prd'});
+  state.rounds.forEach(r => {
+    const f = state.flights.find(f => f.runde === r.runde && f.players.includes(id)); if (!f) return;
+    const it = el('details', {class:'pr'});
+    if (r.runde === Math.max(cr, 1)) it.open = true;
+    it.append(el('summary', {}, [
+      el('span', {class:'pr-r', text: 'R' + r.runde}),
+      el('span', {class:'pr-m'}, [el('b', {text: tag(r.datum) + ' · ' + f.abschlag + ' Uhr'}), el('span', {text: 'Flight ' + f.flight + ' · ' + r.kombi + ' · mit ' + partners(id, r.runde)})]),
+      el('span', {class:'pr-c', 'aria-hidden':'true', text:'›'})
+    ]), scoreCard(id, r, f));
+    rounds.append(it);
+  });
   const bd = el('div', {class:'bd'}, [
-    el('div', {}, [el('h3', {id:'pf-name', text: name(p)}), p.role ? el('div', {class:'role', text: p.role + (p.sub ? ' · ' + p.sub : '')}) : null]),
-    tags, facts,
-    el('div', {}, [el('h4', {style:'margin:0 0 4px;font-family:var(--font-display);font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)', text:'Startzeiten'}), tt]),
-    p.note ? el('p', {class:'note', style:'padding:0', text: p.note}) : null
+    facts,
+    el('div', {}, [el('h4', {class:'ph4', text:'Startzeiten & Scorekarten'}), rounds])
   ]);
-  const card = el('div', {class:'card'}, [ph, bd]);
+  const card = el('div', {class:'card pcard'}, [close, head, bd]);
   ov.append(card); ov.hidden = false;
   const shut = () => { ov.hidden = true; ov.innerHTML = ''; document.removeEventListener('keydown', esc); };
   const esc = e => { if (e.key === 'Escape') shut(); };
